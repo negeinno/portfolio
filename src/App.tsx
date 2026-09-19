@@ -106,22 +106,22 @@ const Home = () => {
         </div>
 
         {/* Floating Black Card Bottom Right */}
-        <Link to="/contact" className="absolute right-6 md:right-[6%] bottom-6 md:bottom-8 z-40 group">
+        <Link to="/contact" className="absolute left-6 right-6 md:left-auto md:right-[6%] bottom-8 md:bottom-8 z-40 group flex justify-center md:justify-end">
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
-            className="bg-[#111] text-white p-3 w-60 md:w-64 shadow-2xl flex items-center gap-4 group-hover:scale-105 transition-transform cursor-pointer"
+            className="bg-[#111] text-white p-3 w-full max-w-[320px] md:max-w-none md:w-64 shadow-2xl flex items-center gap-4 group-hover:scale-105 transition-transform cursor-pointer rounded-xl md:rounded-none"
           >
             <div className="w-12 h-12 md:w-12 md:h-12 overflow-hidden bg-transparent shrink-0">
-              <img src="/anmol-ai.png" alt="Thumb" className="w-full h-full object-cover object-top" />
+              <img src="/anmol-ai.png" alt="Thumb" className="w-full h-full object-cover object-top rounded-md md:rounded-none" />
             </div>
             <div className="flex-1">
               <p className="text-[9px] text-gray-400 mb-1 flex justify-between items-center tracking-widest uppercase">Let's Talk <span className="text-[7px]">✱</span></p>
               <p className="font-bold text-xs">Anmol Kumar</p>
               <p className="text-[9px] text-gray-500 tracking-wider">Software Engineer</p>
             </div>
-            <div className="w-8 h-8 bg-white text-black flex items-center justify-center shrink-0 group-hover:bg-gray-200 transition-colors">
+            <div className="w-8 h-8 bg-white text-black flex items-center justify-center shrink-0 group-hover:bg-gray-200 transition-colors rounded-md md:rounded-none">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="9 5 19 5 19 15"/></svg>
             </div>
           </motion.div>
@@ -131,21 +131,21 @@ const Home = () => {
         <motion.div 
           animate={{ rotateY: [-20, 20] }}
           transition={{ duration: 4, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 w-[90vw] md:w-[650px] pointer-events-none flex justify-center items-end origin-bottom"
+          className="absolute bottom-24 md:bottom-0 left-1/2 -translate-x-1/2 z-20 w-[120vw] md:w-[650px] pointer-events-none flex justify-center items-end origin-bottom"
           style={{ transformStyle: "preserve-3d" }}
         >
-          <img src="/anmol-ai.png" alt="Anmol Kumar" className="w-full max-h-[85vh] object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)]" />
+          <img src="/anmol-ai.png" alt="Anmol Kumar" className="w-full max-h-[50vh] md:max-h-[85vh] object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)]" />
         </motion.div>
 
-        {/* Frosted Glass Summary Card (Bottom Left) */}
+        {/* Frosted Glass Summary Card */}
         <motion.div 
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.8 }}
-          className="absolute bottom-16 md:bottom-20 left-6 md:left-[6%] z-30 max-w-[280px] md:max-w-[340px]"
+          className="absolute top-24 md:top-auto bottom-auto md:bottom-20 left-6 md:left-[6%] right-6 md:right-auto z-30 md:max-w-[340px] flex justify-center md:justify-start"
         >
-          <div className="backdrop-blur-md bg-white/10 border border-white/20 p-5 md:p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:bg-white/20 transition-colors cursor-default">
-            <div className="w-8 h-8 rounded-full bg-white text-[#eb5939] flex items-center justify-center mb-4 shadow-sm">
+          <div className="backdrop-blur-md bg-white/10 border border-white/20 p-5 md:p-6 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:bg-white/20 transition-colors cursor-default w-full max-w-[320px] md:max-w-none">
+            <div className="w-8 h-8 rounded-full bg-white text-[#eb5939] flex items-center justify-center mb-3 md:mb-4 shadow-sm">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
             <p className="text-white text-[10px] md:text-[11px] font-semibold leading-relaxed tracking-wider opacity-90 uppercase">
