@@ -323,24 +323,24 @@ const Contact = () => {
                 I'm always open to discussing backend architecture, product design, or partnership opportunities.
               </p>
               
-              <div className="flex items-center gap-4 mb-16 inline-flex px-5 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
+              <a href="mailto:anmol.krhjp@gmail.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 mb-16 inline-flex px-5 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
                 <div className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></div>
                 <span className="text-xs font-bold uppercase tracking-widest opacity-90">Available for new opportunities</span>
-              </div>
+              </a>
             </div>
 
             <div className="flex flex-col gap-6 text-lg font-bold uppercase tracking-widest mt-auto">
-              <a href="mailto:anmol.krhjp@gmail.com" className="hover:text-[#eb5939] transition-colors border-b border-white/20 pb-4 flex justify-between group items-center">
-                Email <span className="opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-[-10px]">↗</span>
+              <a href="mailto:anmol.krhjp@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#eb5939] transition-colors border-b border-white/20 pb-4 flex justify-between group items-center">
+                Email
               </a>
               <a href="https://linkedin.com/in/anmol-kumar4" target="_blank" rel="noopener noreferrer" className="hover:text-[#eb5939] transition-colors border-b border-white/20 pb-4 flex justify-between group items-center">
-                LinkedIn <span className="opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-[-10px]">↗</span>
+                LinkedIn
               </a>
               <a href="https://github.com/negeinno" target="_blank" rel="noopener noreferrer" className="hover:text-[#eb5939] transition-colors border-b border-white/20 pb-4 flex justify-between group items-center">
-                GitHub <span className="opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-[-10px]">↗</span>
+                GitHub
               </a>
-              <a href="/Anmol_Kumar_Resume.pdf" download className="hover:text-[#eb5939] transition-colors border-b border-white/20 pb-4 flex justify-between group items-center">
-                Download Resume <span className="opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-y-[4px]">↓</span>
+              <a href="https://anmolportfolio-tau.vercel.app/Anmol_Kumar_Resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-[#eb5939] transition-colors border-b border-white/20 pb-4 flex justify-between group items-center">
+                Download Resume
               </a>
             </div>
           </div>
