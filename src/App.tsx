@@ -20,23 +20,56 @@ const GridBackground = () => (
 );
 
 const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   return (
-    <nav className="relative z-50 flex justify-between items-center px-6 md:px-12 py-8 text-white">
-      <Link to="/" className="flex items-center gap-2 group">
-        <div className="relative w-8 h-8 flex items-center justify-center font-black text-xl italic tracking-tighter border-2 border-white rounded-sm group-hover:bg-white group-hover:text-[#eb5939] transition-colors">
-          <span className="absolute -translate-x-1">A</span>
-          <span className="absolute translate-x-1 translate-y-1 opacity-70">K</span>
+    <>
+      <nav className="relative z-50 flex justify-between items-center px-6 md:px-12 py-8 text-white">
+        <Link to="/" className="flex items-center gap-2 group" onClick={() => setIsOpen(false)}>
+          <div className="relative w-8 h-8 flex items-center justify-center font-black text-xl italic tracking-tighter border-2 border-white rounded-sm group-hover:bg-white group-hover:text-[#eb5939] transition-colors">
+            <span className="absolute -translate-x-1">A</span>
+            <span className="absolute translate-x-1 translate-y-1 opacity-70">K</span>
+          </div>
+          <span className="text-xl md:text-2xl font-bold tracking-tight hidden sm:block">Anmol</span>
+        </Link>
+        <div className="hidden md:flex gap-10 text-sm font-medium">
+          <Link to="/" className="hover:border-b hover:border-white/50 pb-1 transition-all">Home</Link>
+          <Link to="/about" className="hover:border-b hover:border-white/50 pb-1 transition-all">About</Link>
+          <Link to="/work" className="hover:border-b hover:border-white/50 pb-1 transition-all">Work</Link>
+          <Link to="/services" className="hover:border-b hover:border-white/50 pb-1 transition-all">Skills</Link>
+          <Link to="/contact" className="hover:border-b hover:border-white/50 pb-1 transition-all">Contact</Link>
         </div>
-        <span className="text-xl md:text-2xl font-bold tracking-tight hidden sm:block">Anmol</span>
-      </Link>
-      <div className="hidden md:flex gap-10 text-sm font-medium">
-        <Link to="/" className="hover:border-b hover:border-white/50 pb-1 transition-all">Home</Link>
-        <Link to="/about" className="hover:border-b hover:border-white/50 pb-1 transition-all">About</Link>
-        <Link to="/work" className="hover:border-b hover:border-white/50 pb-1 transition-all">Work</Link>
-        <Link to="/services" className="hover:border-b hover:border-white/50 pb-1 transition-all">Skills</Link>
-        <Link to="/contact" className="hover:border-b hover:border-white/50 pb-1 transition-all">Contact</Link>
-      </div>
-    </nav>
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden flex items-center">
+          <button onClick={toggleMenu} className="text-white focus:outline-none">
+            {isOpen ? (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            ) : (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            )}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Navigation Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-[#eb5939] flex flex-col items-center justify-center pt-20 pb-8 px-6 space-y-8"
+          >
+            <Link to="/" onClick={toggleMenu} className="text-3xl font-black uppercase tracking-tighter">Home</Link>
+            <Link to="/about" onClick={toggleMenu} className="text-3xl font-black uppercase tracking-tighter">About</Link>
+            <Link to="/work" onClick={toggleMenu} className="text-3xl font-black uppercase tracking-tighter">Work</Link>
+            <Link to="/services" onClick={toggleMenu} className="text-3xl font-black uppercase tracking-tighter">Skills</Link>
+            <Link to="/contact" onClick={toggleMenu} className="text-3xl font-black uppercase tracking-tighter">Contact</Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
@@ -314,22 +347,22 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           
           {/* Left Side: Info */}
-          <div className="flex flex-col justify-between order-2 lg:order-1">
+          <div className="flex flex-col justify-between order-1">
             <div>
-              <h1 className="text-6xl md:text-[8vw] font-black uppercase tracking-tighter leading-none mb-8">
+              <h1 className="text-5xl md:text-[8vw] font-black uppercase tracking-tighter leading-none mb-8 mt-4 md:mt-0">
                 LET'S<br/>TALK
               </h1>
-              <p className="text-xl md:text-2xl font-medium mb-12 opacity-80 max-w-md leading-relaxed">
+              <p className="text-lg md:text-2xl font-medium mb-10 opacity-80 max-w-md leading-relaxed">
                 I'm always open to discussing backend architecture, product design, or partnership opportunities.
               </p>
               
-              <a href="mailto:anmol.krhjp@gmail.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 mb-16 inline-flex px-5 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                <div className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></div>
-                <span className="text-xs font-bold uppercase tracking-widest opacity-90">Available for new opportunities</span>
+              <a href="mailto:anmol.krhjp@gmail.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 md:gap-4 mb-12 w-fit px-4 md:px-5 py-2.5 md:py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                <div className="w-2 h-2 md:w-2.5 md:h-2.5 shrink-0 rounded-full bg-green-400 animate-pulse"></div>
+                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest opacity-90 text-left">Available for new opportunities</span>
               </a>
             </div>
 
-            <div className="flex flex-col gap-6 text-lg font-bold uppercase tracking-widest mt-auto">
+            <div className="flex flex-col gap-6 text-base md:text-lg font-bold uppercase tracking-widest mt-4 md:mt-auto">
               <a href="mailto:anmol.krhjp@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#eb5939] transition-colors border-b border-white/20 pb-4 flex justify-between group items-center">
                 Email
               </a>
@@ -346,7 +379,7 @@ const Contact = () => {
           </div>
 
           {/* Right Side: Form */}
-          <div className="bg-white/5 p-8 md:p-12 lg:p-16 rounded-[2rem] border border-white/10 backdrop-blur-md relative shadow-2xl order-1 lg:order-2">
+          <div className="bg-white/5 p-6 md:p-12 lg:p-16 rounded-[2rem] border border-white/10 backdrop-blur-md relative shadow-2xl order-2">
             {status === 'submitted' ? (
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
