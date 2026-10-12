@@ -73,19 +73,28 @@ export const FishOceanBackground: React.FC = () => {
     fishImg2.src = '/fish/betta-fish-2.jpg';
     fishImg2.onload = checkBothLoaded;
 
-    // Mouse tracking for subtle fluid steering
+    // Mouse tracking for fluid evasion & ripples
     const mouse = {
-      targetX: width * 0.75,
-      targetY: height * 0.45,
-      hasMoved: false,
+      x: -1000,
+      y: -1000,
+      radius: 200,
+      active: false,
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      mouse.targetX = e.clientX;
-      mouse.targetY = e.clientY;
-      mouse.hasMoved = true;
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.active = true;
     };
+
+    const handleMouseLeave = () => {
+      mouse.active = false;
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
 
     // --- Underwater Floating Bubbles ---
     interface Bubble {
@@ -99,86 +108,154 @@ export const FishOceanBackground: React.FC = () => {
       phase: number;
     }
 
-    const bubbles: Bubble[] = Array.from({ length: 35 }, () => ({
+    const bubbles: Bubble[] = Array.from({ length: 45 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 2.5 + 1,
-      speedY: Math.random() * 0.6 + 0.3,
-      opacity: Math.random() * 0.35 + 0.15,
-      wobbleSpeed: Math.random() * 0.03 + 0.015,
+      radius: Math.random() * 2.5 + 0.8,
+      speedY: Math.random() * 0.7 + 0.25,
+      opacity: Math.random() * 0.35 + 0.12,
+      wobbleSpeed: Math.random() * 0.03 + 0.012,
       wobbleAmp: Math.random() * 1.8 + 0.5,
       phase: Math.random() * Math.PI * 2,
     }));
 
-    // --- Swimming Betta Fish Agent ---
+    // --- High-Performance Fluid Betta Fish Agent ---
     class RealisticFish {
       x: number;
       y: number;
       vx: number;
       vy: number;
-      angle: number;
-      targetAngle: number;
+      heading: number;       // Current facing angle (radians)
+      targetHeading: number; // Target swimming direction
       speed: number;
       baseSpeed: number;
+      maxSpeed: number;
       size: number;
-      isPrimary: boolean;
+      alpha: number;
       tailCycle: number;
+      tailSpeed: number;
+      waypointX: number;
+      waypointY: number;
+      waypointTimer: number;
+      facingScaleY: number;  // Smoothly flipped (+1 right, -1 left) without sudden jumps
+      canvas1: HTMLCanvasElement;
+      canvas2: HTMLCanvasElement;
 
-      constructor(x: number, y: number, size: number, isPrimary = true) {
-        this.x = x;
-        this.y = y;
-        this.vx = 1.3;
-        this.vy = 0.2;
-        this.angle = 0;
-        this.targetAngle = 0;
+      constructor(
+        startX: number,
+        startY: number,
+        size: number,
+        baseSpeed: number,
+        alpha: number,
+        c1: HTMLCanvasElement,
+        c2: HTMLCanvasElement
+      ) {
+        this.x = startX;
+        this.y = startY;
+        this.heading = (Math.random() - 0.5) * 0.5;
+        this.targetHeading = this.heading;
+        this.baseSpeed = baseSpeed;
+        this.maxSpeed = baseSpeed * 2.2;
+        this.speed = baseSpeed;
         this.size = size;
-        this.isPrimary = isPrimary;
-        this.baseSpeed = isPrimary ? 1.6 : 1.1;
-        this.speed = this.baseSpeed;
+        this.alpha = alpha;
         this.tailCycle = Math.random() * Math.PI * 2;
+        this.tailSpeed = 0.06;
+        this.waypointX = Math.random() * width;
+        this.waypointY = Math.random() * height;
+        this.waypointTimer = 0;
+        this.facingScaleY = 1;
+        this.vx = Math.cos(this.heading) * this.speed;
+        this.vy = Math.sin(this.heading) * this.speed;
+        this.canvas1 = c1;
+        this.canvas2 = c2;
       }
 
-      update(time: number, targetX: number, targetY: number, hasMouse: boolean) {
-        this.tailCycle += 0.045;
+      pickNewWaypoint() {
+        // Bias towards open screen areas, keeping fish visible & lively
+        const padding = 120;
+        this.waypointX = padding + Math.random() * (width - padding * 2);
+        this.waypointY = padding + Math.random() * (height - padding * 2);
+        this.waypointTimer = 180 + Math.random() * 240; // 3 to 7 seconds per waypoint
+      }
 
-        // Path navigation: graceful swimming trajectory
-        let destX = targetX;
-        let destY = targetY;
-
-        if (!hasMouse) {
-          // Cruise across the open ocean waters
-          destX = width * 0.65 + Math.sin(time * 0.0003) * (width * 0.28);
-          destY = height * 0.45 + Math.cos(time * 0.00045) * (height * 0.28);
+      update() {
+        this.waypointTimer--;
+        if (this.waypointTimer <= 0) {
+          this.pickNewWaypoint();
         }
 
-        const dx = destX - this.x;
-        const dy = destY - this.y;
+        // 1. Desired velocity towards waypoint
+        const dx = this.waypointX - this.x;
+        const dy = this.waypointY - this.y;
+        const dist = Math.hypot(dx, dy);
 
-        // Smooth steering angle
-        this.targetAngle = Math.atan2(dy, dx);
-        let angleDiff = this.targetAngle - this.angle;
+        if (dist < 80) {
+          this.pickNewWaypoint();
+        }
 
+        let steerAngle = Math.atan2(dy, dx);
+
+        // 2. Mouse avoidance / evasion (fish gets startled if mouse approaches too close)
+        if (mouse.active) {
+          const mdx = this.x - mouse.x;
+          const mdy = this.y - mouse.y;
+          const mDist = Math.hypot(mdx, mdy);
+          if (mDist < mouse.radius && mDist > 0) {
+            // Steer strongly away from mouse
+            const fleeAngle = Math.atan2(mdy, mdx);
+            const fleeFactor = Math.pow((mouse.radius - mDist) / mouse.radius, 1.5);
+            steerAngle = fleeAngle;
+            // Tail beats faster when fleeing
+            this.tailSpeed = 0.14;
+            this.speed = Math.min(this.maxSpeed, this.speed + fleeFactor * 1.5);
+          } else {
+            this.tailSpeed += (0.05 - this.tailSpeed) * 0.02;
+            this.speed += (this.baseSpeed - this.speed) * 0.03;
+          }
+        } else {
+          this.tailSpeed += (0.05 - this.tailSpeed) * 0.02;
+          this.speed += (this.baseSpeed - this.speed) * 0.03;
+        }
+
+        // 3. Smooth angle interpolation (avoid snapping)
+        let angleDiff = steerAngle - this.heading;
         while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
         while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+        this.heading += angleDiff * 0.032;
 
-        this.angle += angleDiff * 0.028;
+        // 4. Natural propulsion pulse: speed pulses in sync with tail flick
+        this.tailCycle += this.tailSpeed;
+        const tailThrust = Math.max(0, Math.sin(this.tailCycle * 2));
+        const currentSpeed = this.speed * (0.85 + tailThrust * 0.35);
 
-        // Realistic swimming pulse
-        const stroke = Math.sin(this.tailCycle * 2);
-        this.speed = this.baseSpeed + (stroke > 0 ? stroke * 0.5 : 0.05);
-
-        this.vx = Math.cos(this.angle) * this.speed;
-        this.vy = Math.sin(this.angle) * this.speed;
-
+        // 5. Update position
+        this.vx = Math.cos(this.heading) * currentSpeed;
+        this.vy = Math.sin(this.heading) * currentSpeed;
         this.x += this.vx;
         this.y += this.vy;
 
-        // Boundary wrapping
-        const margin = this.size * 0.8;
-        if (this.x < -margin) this.x = width + margin;
-        if (this.x > width + margin) this.x = -margin;
-        if (this.y < -margin) this.y = height + margin;
-        if (this.y > height + margin) this.y = -margin;
+        // 6. Smooth vertical facing inversion (when swimming left, dorsal fin stays on top)
+        const targetScaleY = Math.cos(this.heading) < 0 ? -1 : 1;
+        this.facingScaleY += (targetScaleY - this.facingScaleY) * 0.12;
+
+        // 7. Viewport soft boundary bounce
+        const pad = this.size * 0.4;
+        if (this.x < pad && this.vx < 0) {
+          this.waypointX = width * 0.7;
+          this.waypointTimer = 120;
+        } else if (this.x > width - pad && this.vx > 0) {
+          this.waypointX = width * 0.3;
+          this.waypointTimer = 120;
+        }
+
+        if (this.y < pad && this.vy < 0) {
+          this.waypointY = height * 0.7;
+          this.waypointTimer = 120;
+        } else if (this.y > height - pad && this.vy > 0) {
+          this.waypointY = height * 0.3;
+          this.waypointTimer = 120;
+        }
       }
 
       draw(ctx: CanvasRenderingContext2D) {
@@ -187,62 +264,83 @@ export const FishOceanBackground: React.FC = () => {
         ctx.save();
         ctx.translate(this.x, this.y);
 
-        // Rotation & natural posture
-        ctx.rotate(this.angle);
+        // Heading rotation
+        ctx.rotate(this.heading);
 
-        // Invert vertically if swimming leftwards
-        const isFacingLeft = Math.cos(this.angle) < 0;
-        if (isFacingLeft) {
-          ctx.scale(1, -1);
-        }
+        // Smooth flip so dorsal fin stays upward regardless of direction
+        ctx.scale(1, this.facingScaleY);
 
-        // Fluid undulating tail motion
-        const undulationX = 1 + Math.sin(this.tailCycle * 2) * 0.035;
-        const undulationY = 1 + Math.cos(this.tailCycle * 2) * 0.04;
-        ctx.scale(undulationX, undulationY);
+        // Organic undulation (fish spine & fin flex)
+        const finWaveX = 1 + Math.sin(this.tailCycle * 2) * 0.04;
+        const finWaveY = 1 + Math.cos(this.tailCycle * 2) * 0.05;
+        ctx.scale(finWaveX, finWaveY);
 
-        // Active sprite frame
-        const frameIndex = Math.sin(this.tailCycle * 2) > 0 ? 0 : 1;
-        const activeCanvas = frameIndex === 0 ? offscreenFish1 : offscreenFish2;
+        // Alternate frames smoothly for swimming animation
+        const frameCycle = Math.sin(this.tailCycle * 2);
+        const activeCanvas = frameCycle > 0 ? this.canvas1 : this.canvas2;
 
-        const renderWidth = this.size;
-        const renderHeight = this.size;
+        const w = this.size;
+        const h = this.size;
 
-        ctx.globalAlpha = this.isPrimary ? 0.88 : 0.45;
+        ctx.globalAlpha = this.alpha;
 
-        // Draw the cleanly cut-out fish with ZERO square artifact
-        ctx.drawImage(
-          activeCanvas,
-          -renderWidth * 0.5,
-          -renderHeight * 0.5,
-          renderWidth,
-          renderHeight
-        );
+        // Center sprite cleanly on fish body
+        ctx.drawImage(activeCanvas, -w * 0.5, -h * 0.5, w, h);
 
         ctx.restore();
       }
     }
 
-    // Initialize fish agents
-    const primaryFishSize = Math.min(width, height) * 0.38;
-    const primaryBetta = new RealisticFish(width * 0.75, height * 0.45, Math.max(300, primaryFishSize), true);
-    const companionBetta = new RealisticFish(width * 0.3, height * 0.7, Math.max(180, primaryFishSize * 0.55), false);
+    // Initialize 3 Betta fish across different depths
+    const heroFishSize = Math.max(260, Math.min(width, height) * 0.32);
+    const fishSquad: RealisticFish[] = [
+      // 1. Hero Betta fish (foreground)
+      new RealisticFish(
+        width * 0.72,
+        height * 0.38,
+        heroFishSize,
+        1.7,
+        0.88,
+        offscreenFish1,
+        offscreenFish2
+      ),
+      // 2. Midground Betta fish (swimming across middle screen)
+      new RealisticFish(
+        width * 0.25,
+        height * 0.65,
+        heroFishSize * 0.68,
+        1.3,
+        0.58,
+        offscreenFish2,
+        offscreenFish1
+      ),
+      // 3. Deep ambient background Betta fish (smaller, ethereal depth)
+      new RealisticFish(
+        width * 0.55,
+        height * 0.82,
+        heroFishSize * 0.42,
+        0.95,
+        0.35,
+        offscreenFish1,
+        offscreenFish2
+      ),
+    ];
 
     // --- Render Loop ---
-    const render = (time: number) => {
+    const render = () => {
       ctx.clearRect(0, 0, width, height);
 
       // Deep Oceanic Ambient Glow
       const oceanGrad = ctx.createRadialGradient(
-        width * 0.6,
-        height * 0.3,
-        80,
+        width * 0.65,
+        height * 0.35,
+        100,
         width * 0.5,
         height * 0.5,
         width * 0.85
       );
-      oceanGrad.addColorStop(0, 'rgba(10, 36, 68, 0.35)');
-      oceanGrad.addColorStop(0.5, 'rgba(6, 20, 42, 0.2)');
+      oceanGrad.addColorStop(0, 'rgba(12, 42, 78, 0.4)');
+      oceanGrad.addColorStop(0.5, 'rgba(6, 22, 44, 0.22)');
       oceanGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
       ctx.fillStyle = oceanGrad;
@@ -270,13 +368,13 @@ export const FishOceanBackground: React.FC = () => {
         ctx.fill();
       });
 
-      // 1. Draw Companion Betta (deep background)
-      companionBetta.update(time, mouse.targetX, mouse.targetY, false);
-      companionBetta.draw(ctx);
-
-      // 2. Draw Primary Photorealistic Betta Fish
-      primaryBetta.update(time, mouse.targetX, mouse.targetY, mouse.hasMoved);
-      primaryBetta.draw(ctx);
+      // Update and draw all fish in natural depth order
+      // Deepest fish drawn first
+      for (let i = fishSquad.length - 1; i >= 0; i--) {
+        const fish = fishSquad[i];
+        fish.update();
+        fish.draw(ctx);
+      }
 
       animationFrameId = requestAnimationFrame(render);
     };
