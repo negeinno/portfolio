@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  BarChart3, 
   Database, 
   Mail, 
   Phone, 
@@ -16,12 +15,11 @@ import {
   Award, 
   GraduationCap, 
   Users, 
-  ChevronRight,
-  Filter,
-  Maximize2,
-  Eye,
-  FileCheck2,
-  Workflow
+  ChevronRight, 
+  Filter, 
+  Maximize2, 
+  Eye, 
+  Workflow 
 } from 'lucide-react';
 
 import { 
@@ -48,17 +46,18 @@ import { LinkedinIcon, GithubIcon } from './components/Icons';
 
 const GridBackground = () => (
   <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    {/* Subtle Data Grid Mesh */}
+    {/* Subtle Data Mesh */}
     <div 
-      className="absolute inset-0 opacity-[0.03]"
+      className="absolute inset-0 opacity-[0.04]"
       style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-        backgroundSize: '36px 36px'
+        backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
+        backgroundSize: '32px 32px'
       }}
     />
-    {/* Ambient Glows */}
-    <div className="absolute -top-40 -left-40 w-96 h-96 bg-orange-600/10 rounded-full blur-[140px] pointer-events-none" />
-    <div className="absolute top-1/2 -right-40 w-96 h-96 bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
+    {/* Rich Atmospheric Glows for Modern UI Depth */}
+    <div className="absolute -top-32 left-1/4 w-[600px] h-[500px] bg-gradient-to-br from-orange-500/15 to-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+    <div className="absolute top-1/3 -right-20 w-[550px] h-[550px] bg-gradient-to-bl from-blue-600/12 to-indigo-600/10 rounded-full blur-[150px] pointer-events-none" />
+    <div className="absolute bottom-10 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-600/10 to-teal-600/10 rounded-full blur-[140px] pointer-events-none" />
   </div>
 );
 
@@ -76,15 +75,19 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-[#0b0d14]/85 border-b border-white/10 px-6 md:px-12 py-4 text-white transition-all">
+      <nav className="sticky top-0 z-50 backdrop-blur-2xl bg-[#0b0f19]/85 border-b border-slate-800/80 px-6 md:px-12 py-3.5 text-slate-100 transition-all shadow-lg shadow-black/20">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3 group" onClick={() => setIsOpen(false)}>
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#eb5939] to-amber-500 flex items-center justify-center font-black text-white text-base shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center font-black text-white text-base shadow-md shadow-orange-500/30 group-hover:scale-105 transition-transform border border-orange-400/30">
               AK
             </div>
             <div>
-              <span className="text-base font-bold tracking-tight block leading-tight">Anmol Kumar</span>
-              <span className="text-[10px] text-orange-400 font-mono tracking-wider uppercase block">Data Analyst • BI</span>
+              <span className="text-base font-bold tracking-tight block leading-tight text-white group-hover:text-orange-400 transition-colors">
+                Anmol Kumar
+              </span>
+              <span className="text-[11px] text-orange-400 font-mono tracking-wider uppercase block font-semibold">
+                Data Analyst • BI
+              </span>
             </div>
           </Link>
 
@@ -96,15 +99,15 @@ const NavBar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`transition-colors py-1 relative ${
-                    isActive ? 'text-white font-semibold' : 'text-gray-400 hover:text-white'
+                  className={`transition-colors py-1.5 relative ${
+                    isActive ? 'text-white font-semibold' : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   {link.name}
                   {isActive && (
                     <motion.div 
                       layoutId="activeNav"
-                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#eb5939] rounded-full" 
+                      className="absolute -bottom-1 left-0 right-0 h-[2.5px] bg-gradient-to-r from-orange-500 to-amber-400 rounded-full" 
                     />
                   )}
                 </Link>
@@ -112,19 +115,19 @@ const NavBar = () => {
             })}
           </div>
 
-          {/* Action Button */}
+          {/* Action Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <a
               href={PERSONAL_INFO.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white border border-white/10 transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700/80 transition-all hover:text-white"
             >
-              <Download className="w-3.5 h-3.5" /> Resume
+              <Download className="w-3.5 h-3.5 text-orange-400" /> Resume
             </a>
             <Link
               to="/contact"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#eb5939] hover:bg-[#d64b2d] text-white shadow-lg shadow-orange-500/20 transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-md shadow-orange-500/25 transition-all font-semibold"
             >
               Hire Me
             </Link>
@@ -134,13 +137,13 @@ const NavBar = () => {
           <div className="md:hidden flex items-center">
             <button 
               onClick={() => setIsOpen(!isOpen)} 
-              className="p-2 text-gray-300 hover:text-white focus:outline-none"
+              className="p-2 text-slate-300 hover:text-white focus:outline-none rounded-lg bg-slate-800/60 border border-slate-700/60"
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
               ) : (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
               )}
             </button>
           </div>
@@ -154,14 +157,14 @@ const NavBar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-[#0c0e16]/98 backdrop-blur-2xl flex flex-col justify-center items-center px-6 gap-6 md:hidden"
+            className="fixed inset-0 z-40 bg-[#0b0f19]/98 backdrop-blur-2xl flex flex-col justify-center items-center px-6 gap-6 md:hidden"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className="text-2xl font-bold uppercase tracking-tight text-white hover:text-[#eb5939] transition-colors"
+                className="text-2xl font-bold uppercase tracking-tight text-white hover:text-orange-400 transition-colors"
               >
                 {link.name}
               </Link>
@@ -171,14 +174,14 @@ const NavBar = () => {
                 href={PERSONAL_INFO.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-white/10 text-white border border-white/15 flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-slate-800 text-white border border-slate-700 flex items-center justify-center gap-2"
               >
-                <Download className="w-4 h-4" /> Download Resume PDF
+                <Download className="w-4 h-4 text-orange-400" /> Download Resume PDF
               </a>
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-[#eb5939] text-white flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-orange-500 text-white flex items-center justify-center gap-2"
               >
                 Get in Touch
               </Link>
@@ -191,23 +194,23 @@ const NavBar = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-[#08090f] text-white border-t border-white/10 py-12 px-6 md:px-12 relative z-10">
+  <footer className="bg-[#080c14] text-slate-300 border-t border-slate-800/80 py-12 px-6 md:px-12 relative z-10">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-7 h-7 rounded-lg bg-[#eb5939] flex items-center justify-center text-xs font-black text-white">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-xs font-black text-white shadow-sm">
             AK
           </div>
-          <span className="font-bold text-base">Anmol Kumar</span>
-          <span className="text-gray-500">•</span>
-          <span className="text-xs text-gray-400 font-mono">Data Analyst Portfolio</span>
+          <span className="font-bold text-base text-white">Anmol Kumar</span>
+          <span className="text-slate-600">•</span>
+          <span className="text-xs text-orange-400 font-mono font-semibold">Data Analyst & BI Specialist</span>
         </div>
-        <p className="text-xs text-gray-400 max-w-md leading-relaxed">
-          Transforming messy datasets into clear business decisions through SQL, Python, Power BI, and AI-assisted analytics.
+        <p className="text-xs text-slate-400 max-w-md leading-relaxed">
+          Transforming messy multi-source datasets into executive business intelligence through SQL, Python, Power BI, and AI-assisted analytics.
         </p>
       </div>
 
-      <div className="flex flex-wrap items-center gap-6 text-xs text-gray-400 font-medium">
+      <div className="flex flex-wrap items-center gap-6 text-xs text-slate-400 font-medium">
         <a href="mailto:anmol.krhjp@gmail.com" className="hover:text-white transition-colors flex items-center gap-1.5">
           <Mail className="w-3.5 h-3.5 text-orange-400" /> anmol.krhjp@gmail.com
         </a>
@@ -215,18 +218,18 @@ const Footer = () => (
           <LinkedinIcon className="w-3.5 h-3.5 text-blue-400" /> LinkedIn
         </a>
         <a href="https://github.com/negeinno" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">
-          <GithubIcon className="w-3.5 h-3.5 text-gray-300" /> GitHub
+          <GithubIcon className="w-3.5 h-3.5 text-slate-300" /> GitHub
         </a>
         <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">
           <Download className="w-3.5 h-3.5 text-emerald-400" /> Resume PDF
         </a>
       </div>
     </div>
-    <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-gray-500">
-      <p>© 2026 Anmol Kumar. Built with precision, data empathy & React.</p>
+    <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-500">
+      <p>© 2026 Anmol Kumar. Engineered with data discipline, clarity & human empathy.</p>
       <p className="flex items-center gap-2 font-mono">
         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        Based in Bengaluru, Karnataka • Ready to Relocate
+        Based in Bengaluru, Karnataka • Open to Relocation
       </p>
     </div>
   </footer>
@@ -252,36 +255,42 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 
   return (
     <PageTransition>
-      <div className="w-full text-white">
+      <div className="w-full text-slate-100">
         
-        {/* Hero Section */}
-        <section className="relative overflow-hidden pt-12 md:pt-20 pb-16 md:pb-24 px-6 md:px-12 border-b border-white/10">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Hero Section - Clean, Non-Overlapping Spacing */}
+        <section className="relative overflow-hidden pt-12 md:pt-16 pb-16 md:pb-24 px-6 md:px-12 border-b border-slate-800/80">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
             
-            {/* Left Column: Headline & Bio */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-mono font-semibold">
-                <span className="w-2 h-2 rounded-full bg-[#eb5939] animate-pulse"></span>
-                Seeking Entry-Level Data Analyst & BI Roles
+            {/* Left Column: Headline, Pill & Bio */}
+            <div className="lg:col-span-7 flex flex-col items-start">
+              
+              {/* Standalone Status Pill Badge with Clean Bottom Margin */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-orange-500/30 text-orange-400 text-xs font-mono font-medium shadow-sm mb-6">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Seeking Entry-Level Data Analyst & BI Roles</span>
+                <span className="text-slate-600">•</span>
+                <span className="text-slate-300">Bengaluru & Remote</span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.95] text-white">
+              {/* Main Heading */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.04] text-white mb-6">
                 Transforming <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400">Raw Data</span> Into High-Impact Business Decisions.
               </h1>
 
-              <p className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl font-normal">
+              {/* Lead Paragraph */}
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal mb-8">
                 Hello! I am <span className="text-white font-semibold">Anmol Kumar</span>, a Computer Science graduate specialized in 
                 <span className="text-orange-400 font-medium"> SQL</span>, 
                 <span className="text-orange-400 font-medium"> Python</span>, 
                 <span className="text-orange-400 font-medium"> Power BI</span>, and 
-                <span className="text-orange-400 font-medium"> AI-assisted Analytics</span>. I build robust data pipelines, design Star Schema data models, and engineer executive dashboards that cut through reporting noise.
+                <span className="text-orange-400 font-medium"> AI-assisted Analytics</span>. I build robust data pipelines, design Star Schema models, and craft executive dashboards that cut through reporting noise.
               </p>
 
-              {/* Action buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-4 mb-8">
                 <Link
                   to="/work"
-                  className="px-6 py-3.5 rounded-xl bg-[#eb5939] hover:bg-[#d64b2d] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-xl shadow-orange-500/20 transition-all hover:gap-3"
+                  className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-orange-500/25 transition-all hover:gap-3"
                 >
                   Explore Case Studies <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -289,25 +298,25 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                   href={PERSONAL_INFO.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold uppercase tracking-wider border border-white/15 flex items-center gap-2 transition-all"
+                  className="px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-white text-xs font-bold uppercase tracking-wider border border-slate-700/80 flex items-center gap-2 transition-all shadow-sm"
                 >
-                  <Download className="w-4 h-4" /> Download Resume
+                  <Download className="w-4 h-4 text-orange-400" /> Download Resume
                 </a>
                 <Link
                   to="/contact"
-                  className="px-5 py-3.5 rounded-xl text-gray-300 hover:text-white text-xs font-semibold uppercase tracking-wider flex items-center gap-1 transition-colors"
+                  className="px-4 py-3.5 text-slate-300 hover:text-white text-xs font-semibold uppercase tracking-wider flex items-center gap-1 transition-colors"
                 >
                   Contact Me <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
 
               {/* Quick Contact & Location Badges */}
-              <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-gray-400 border-t border-white/10 font-mono">
+              <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-slate-400 border-t border-slate-800/80 font-mono w-full">
                 <span className="flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-orange-400" /> Bengaluru, Karnataka
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <GraduationCap className="w-3.5 h-3.5 text-amber-400" /> Chandigarh University (CGPA: 7.66)
+                  <GraduationCap className="w-3.5 h-3.5 text-amber-400" /> Chandigarh University (CGPA 7.66)
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Cisco & IBM Certified
@@ -315,87 +324,86 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               </div>
             </div>
 
-            {/* Right Column: Hero Visual with Real Image & Telemetry Cards */}
-            <div className="lg:col-span-5 relative flex justify-center items-center">
-              {/* Background Glow Ring */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-indigo-500/10 rounded-full blur-3xl transform scale-90" />
-              
-              <div className="relative w-full max-w-[400px]">
-                {/* Image Frame */}
-                <div className="relative z-10 rounded-3xl overflow-hidden border-2 border-white/15 bg-gradient-to-b from-[#1c1f2e] to-[#0e1018] shadow-2xl">
-                  <img
-                    src="/anmol-ai.png"
-                    alt="Anmol Kumar - Data Analyst"
-                    className="w-full h-[430px] object-cover object-top hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0e1018] via-transparent to-transparent opacity-80" />
-                  
-                  {/* Floating Identity Strip */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-[#141722]/90 backdrop-blur-md p-3 rounded-2xl border border-white/15">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-xs font-bold text-white">Anmol Kumar</p>
-                        <p className="text-[10px] text-gray-400">Data Analyst & BI Specialist</p>
-                      </div>
-                      <span className="text-[10px] font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                        Available Now
-                      </span>
-                    </div>
+            {/* Right Column: Clean Non-Overlapping Profile Window Card */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="w-full max-w-[390px] rounded-3xl bg-slate-900/90 border border-slate-700/80 shadow-2xl overflow-hidden glass-card">
+                
+                {/* Window Header */}
+                <div className="bg-slate-950/80 px-4 py-3 border-b border-slate-800/80 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                  </div>
+                  <span className="text-[11px] font-mono text-slate-400">anmol_profile.pbix</span>
+                  <span className="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                    Live
+                  </span>
+                </div>
+
+                {/* Profile Image - Clean, Fully Visible, High Fidelity */}
+                <div className="p-4 bg-gradient-to-b from-slate-900/50 to-slate-950/80">
+                  <div className="rounded-2xl overflow-hidden border border-slate-800 shadow-inner bg-slate-950">
+                    <img
+                      src="/about-pic.jpg"
+                      alt="Anmol Kumar - Data Analyst"
+                      className="w-full aspect-[4/4.6] object-cover object-top hover:scale-[1.02] transition-transform duration-500"
+                    />
                   </div>
                 </div>
 
-                {/* Floating Telemetry Card 1 - Top Left */}
-                <motion.div
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="absolute -top-4 -left-6 z-20 bg-[#161924]/95 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl hidden sm:flex items-center gap-3"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold">
-                    <BarChart3 className="w-5 h-5" />
+                {/* Structured Info Dock (Below image, zero overlap!) */}
+                <div className="px-5 pb-5 pt-1 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-bold text-base text-white">Anmol Kumar</p>
+                      <p className="text-xs text-orange-400 font-mono font-medium">Data Analyst & BI Specialist</p>
+                    </div>
+                    <span className="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md border border-slate-700 font-mono">
+                      CSE '26
+                    </span>
                   </div>
-                  <div>
-                    <p className="text-[10px] text-gray-400 font-mono uppercase">Primary Focus</p>
-                    <p className="text-xs font-bold text-white">Power BI DAX & SQL</p>
-                  </div>
-                </motion.div>
 
-                {/* Floating Telemetry Card 2 - Bottom Right */}
-                <motion.div
-                  initial={{ x: 20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="absolute -bottom-4 -right-6 z-20 bg-[#161924]/95 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl hidden sm:flex items-center gap-3"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
-                    <Sparkles className="w-5 h-5" />
+                  {/* Core Tech Stack Badges */}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {['SQL (MySQL)', 'Power BI DAX', 'Python (Pandas)', 'Excel'].map((skill, sI) => (
+                      <span key={sI} className="text-[10px] font-mono bg-slate-800/90 text-slate-300 px-2 py-0.5 rounded border border-slate-700/60">
+                        {skill}
+                      </span>
+                    ))}
                   </div>
-                  <div>
-                    <p className="text-[10px] text-gray-400 font-mono uppercase">AI Augmentation</p>
-                    <p className="text-xs font-bold text-white">Automated Reporting</p>
+
+                  {/* Status Indicator */}
+                  <div className="pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      Available for Immediate Joining
+                    </span>
+                    <span className="text-orange-400 font-mono font-semibold">100% Focused</span>
                   </div>
-                </motion.div>
+                </div>
+
               </div>
             </div>
 
           </div>
         </section>
 
-        {/* Live Core KPI Strip */}
-        <section className="bg-[#0e1019] py-10 px-6 md:px-12 border-b border-white/10">
-          <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Live Core KPI Strip - Modern UI Card Grid */}
+        <section className="bg-[#090d16] py-12 px-6 md:px-12 border-b border-slate-800/80">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-5">
             {CORE_KPIS.map((kpi, idx) => (
               <div 
                 key={idx}
-                className="bg-white/5 p-5 rounded-2xl border border-white/5 hover:border-orange-500/30 transition-all hover:-translate-y-1"
+                className="bg-slate-900/70 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/40 transition-all hover:-translate-y-1 shadow-lg shadow-black/20 glass-card"
               >
-                <p className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
+                <p className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-amber-300">
                   {kpi.value}
                 </p>
-                <p className="text-xs font-bold uppercase tracking-wider text-orange-400 mt-1">
+                <p className="text-xs font-bold uppercase tracking-wider text-orange-400 mt-1 font-mono">
                   {kpi.label}
                 </p>
-                <p className="text-[11px] text-gray-400 mt-1">
+                <p className="text-xs text-slate-400 mt-1">
                   {kpi.subtext}
                 </p>
               </div>
@@ -404,7 +412,7 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         </section>
 
         {/* Featured Live Visualizer: AI Sales Insights Dashboard */}
-        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-white/10">
+        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-800/80">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
               <div>
@@ -414,54 +422,62 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
                   AI Sales Executive Intelligence Dashboard
                 </h2>
-                <p className="text-sm sm:text-base text-gray-400 max-w-2xl mt-2">
-                  Engineered using SQL, Python, Excel, and Power BI. Experience both the live interactive data model simulator and the production dashboard interface.
+                <p className="text-sm sm:text-base text-slate-400 max-w-2xl mt-2">
+                  Engineered using SQL, Python, Excel, and Power BI. Toggle between the live interactive data model simulator and the production dashboard interface.
                 </p>
               </div>
 
               {/* View Switcher Pills */}
-              <div className="flex items-center gap-2 bg-white/5 p-1 rounded-xl border border-white/10 self-start md:self-auto">
+              <div className="flex items-center gap-2 bg-slate-900 p-1 rounded-xl border border-slate-700/80 self-start md:self-auto">
                 <button
                   onClick={() => setSalesViewMode('interactive')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     salesViewMode === 'interactive'
-                      ? 'bg-[#eb5939] text-white shadow-md'
-                      : 'text-gray-400 hover:text-white'
+                      ? 'bg-orange-500 text-white shadow-md'
+                      : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   <Workflow className="w-3.5 h-3.5" /> Interactive Model
                 </button>
                 <button
                   onClick={() => setSalesViewMode('screenshot')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     salesViewMode === 'screenshot'
-                      ? 'bg-[#eb5939] text-white shadow-md'
-                      : 'text-gray-400 hover:text-white'
+                      ? 'bg-orange-500 text-white shadow-md'
+                      : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <Eye className="w-3.5 h-3.5" /> BI Dashboard UI
+                  <Eye className="w-3.5 h-3.5" /> Full BI Dashboard UI
                 </button>
                 <button
                   onClick={() => onSelectCaseStudy(CASE_STUDIES[0])}
-                  className="px-3 py-1.5 rounded-lg text-xs font-semibold text-orange-400 hover:text-orange-300 ml-1 border-l border-white/10 pl-2"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold text-orange-400 hover:text-orange-300 ml-1 border-l border-slate-700/80 pl-2"
                 >
                   Full Breakdown →
                 </button>
               </div>
             </div>
 
-            {/* View container */}
+            {/* View Container */}
             {salesViewMode === 'interactive' ? (
               <SalesDashboardVisualizer />
             ) : (
-              <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-black/60 shadow-2xl group cursor-pointer" onClick={() => onSelectCaseStudy(CASE_STUDIES[0])}>
-                <div className="absolute top-4 left-4 z-10 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-xs font-mono text-orange-400 flex items-center gap-2">
-                  <Maximize2 className="w-3.5 h-3.5" /> Production Power BI Multi-Regional Analytics Screen
+              <div className="rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 shadow-2xl glass-card">
+                {/* Browser Titlebar */}
+                <div className="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                    <span className="font-mono text-slate-300 ml-2">app.powerbi.com/groups/me/reports/sales-executive-intelligence</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-emerald-400">Production Refresh: Active</span>
                 </div>
+                {/* Full Uncropped High-Res Image */}
                 <img 
                   src="/case-studies/sales-dashboard.jpg" 
-                  alt="Sales Dashboard UI" 
-                  className="w-full max-h-[580px] object-cover object-top group-hover:scale-[1.01] transition-transform duration-500" 
+                  alt="Sales Dashboard Full UI" 
+                  className="w-full h-auto object-contain block" 
                 />
               </div>
             )}
@@ -469,7 +485,7 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         </section>
 
         {/* Featured Case Studies Grid with Visual Artwork */}
-        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-white/10">
+        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-800/80">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
@@ -478,8 +494,8 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
                 Selected Data Case Studies
               </h2>
-              <p className="text-sm sm:text-base text-gray-400">
-                Detailed breakdowns demonstrating business problem scoping, SQL data mart modeling, Python preprocessing, and executive storytelling with real dashboard deliverables.
+              <p className="text-sm sm:text-base text-slate-400">
+                Detailed breakdowns demonstrating business problem scoping, SQL data mart modeling, Python preprocessing, and executive storytelling with real deliverables.
               </p>
             </div>
 
@@ -488,24 +504,23 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 <div
                   key={study.id}
                   onClick={() => onSelectCaseStudy(study)}
-                  className="group bg-[#11131e] rounded-3xl border border-white/10 overflow-hidden hover:border-orange-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10 cursor-pointer flex flex-col justify-between"
+                  className="group bg-slate-900/70 rounded-3xl border border-slate-800 overflow-hidden hover:border-orange-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10 cursor-pointer flex flex-col justify-between glass-card"
                 >
                   <div>
-                    {/* Visual Preview Image */}
+                    {/* Visual Preview Image - Full uncropped aspect ratio */}
                     {study.image && (
-                      <div className="relative h-52 w-full overflow-hidden border-b border-white/10 bg-black/50">
+                      <div className="relative w-full overflow-hidden border-b border-slate-800 bg-slate-950">
                         <img 
                           src={study.image} 
                           alt={study.title} 
-                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" 
+                          className="w-full aspect-[16/9.5] object-cover object-top group-hover:scale-[1.02] transition-transform duration-500" 
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#11131e] via-transparent to-transparent opacity-80" />
                         <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                          <span className="text-[11px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-orange-400 border border-white/15">
+                          <span className="text-[11px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md text-orange-400 border border-slate-700/80">
                             {study.category}
                           </span>
                         </div>
-                        <div className="absolute bottom-3 right-4 z-10 text-xs font-mono text-gray-300 bg-black/70 backdrop-blur-sm px-2.5 py-0.5 rounded border border-white/10">
+                        <div className="absolute bottom-3 right-4 z-10 text-xs font-mono text-slate-300 bg-slate-950/80 backdrop-blur-sm px-2.5 py-0.5 rounded border border-slate-700/60">
                           {study.timeline}
                         </div>
                       </div>
@@ -516,14 +531,14 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                         <h3 className="text-2xl font-black uppercase tracking-tight text-white group-hover:text-orange-400 transition-colors">
                           {study.title}
                         </h3>
-                        <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                        <p className="text-xs text-slate-400 mt-2 leading-relaxed">
                           {study.subtitle}
                         </p>
                       </div>
 
                       {/* Behind The Scenes Quote */}
                       {study.analystNotes && (
-                        <div className="bg-white/5 border-l-2 border-orange-400 p-3 rounded-r-xl text-xs text-gray-300 italic line-clamp-2">
+                        <div className="bg-slate-950/60 border-l-2 border-orange-400 p-3 rounded-r-xl text-xs text-slate-300 italic line-clamp-2">
                           "{study.analystNotes}"
                         </div>
                       )}
@@ -531,8 +546,8 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                       {/* Quick Metric Highlights */}
                       <div className="grid grid-cols-2 gap-3">
                         {study.metrics.slice(0, 2).map((m, mIdx) => (
-                          <div key={mIdx} className="bg-black/40 p-3 rounded-xl border border-white/5">
-                            <p className="text-[10px] text-gray-400 font-mono uppercase">{m.label}</p>
+                          <div key={mIdx} className="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                            <p className="text-[10px] text-slate-400 font-mono uppercase">{m.label}</p>
                             <p className="text-xl font-black text-white mt-0.5">{m.value}</p>
                             {m.change && <p className="text-[10px] text-emerald-400 font-bold">{m.change}</p>}
                           </div>
@@ -542,7 +557,7 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                       {/* Tools Tags */}
                       <div className="flex flex-wrap gap-1.5">
                         {study.tools.map((tool, tIdx) => (
-                          <span key={tIdx} className="text-[10px] font-medium bg-black/40 text-gray-300 px-2 py-0.5 rounded border border-white/10">
+                          <span key={tIdx} className="text-[10px] font-medium bg-slate-800/80 text-slate-300 px-2 py-0.5 rounded border border-slate-700/60 font-mono">
                             {tool}
                           </span>
                         ))}
@@ -551,7 +566,7 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                   </div>
 
                   {/* Card Bottom CTA Strip */}
-                  <div className="px-7 py-4 bg-[#161926] border-t border-white/10 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-white group-hover:bg-orange-500 transition-colors">
+                  <div className="px-7 py-4 bg-slate-950/90 border-t border-slate-800 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-200 group-hover:bg-orange-500 group-hover:text-white transition-colors">
                     <span>View In-Depth Breakdown</span>
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -562,16 +577,16 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
             <div className="mt-12 text-center">
               <Link
                 to="/work"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider border border-white/15 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-white text-xs font-bold uppercase tracking-wider border border-slate-700/80 transition-all"
               >
-                Browse All Case Studies & Code Explorer <ArrowRight className="w-4 h-4" />
+                Browse All Case Studies & Code Explorer <ArrowRight className="w-4 h-4 text-orange-400" />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* 6-Step Data Analytics Methodology with Architecture Visual */}
-        <section className="py-16 md:py-24 px-6 md:px-12 bg-[#090b12] border-b border-white/10">
+        {/* 6-Step Data Analytics Methodology with UNCLIPPED Architecture Visual */}
+        <section className="py-16 md:py-24 px-6 md:px-12 bg-[#080c14] border-b border-slate-800/80">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
@@ -580,37 +595,69 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
                 End-To-End Data Architecture Flow
               </h2>
-              <p className="text-sm sm:text-base text-gray-400">
+              <p className="text-sm sm:text-base text-slate-400">
                 A structured, disciplined methodology ensuring every analysis produces dependable, verifiable, and actionable business intelligence.
               </p>
             </div>
 
-            {/* Architecture Visual Diagram */}
-            <div className="mb-14 rounded-2xl overflow-hidden border border-white/15 bg-black/60 shadow-2xl">
+            {/* Architecture Visual Diagram - 100% Fully Visible, No Cropping */}
+            <div className="mb-14 rounded-3xl overflow-hidden border border-slate-700/80 bg-slate-950 shadow-2xl glass-card">
+              <div className="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
+                  <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                  <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                  <span className="font-mono text-slate-300 ml-2">architecture_pipeline_diagram.svg</span>
+                </div>
+                <span className="text-[11px] font-mono text-orange-400">Production Specification</span>
+              </div>
+              
+              {/* Full Unclipped Image */}
               <img 
                 src="/case-studies/pipeline-architecture.jpg" 
                 alt="Data Pipeline Flow Diagram" 
-                className="w-full max-h-[440px] object-cover object-center" 
+                className="w-full h-auto object-contain block" 
               />
+
+              {/* Caption Bar Explaining All 4 Stages */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-slate-900/60 border-t border-slate-800 text-xs">
+                <div>
+                  <p className="font-bold text-orange-400 font-mono">Stage 1: Sources</p>
+                  <p className="text-slate-400 text-[11px] mt-0.5">MySQL, SQL Server & CSV file dumps</p>
+                </div>
+                <div>
+                  <p className="font-bold text-amber-400 font-mono">Stage 2: Ingestion</p>
+                  <p className="text-slate-400 text-[11px] mt-0.5">Python Pandas cleaning & ETL sanitation</p>
+                </div>
+                <div>
+                  <p className="font-bold text-blue-400 font-mono">Stage 3: Warehousing</p>
+                  <p className="text-slate-400 text-[11px] mt-0.5">Analytical Star Schema & Fact modeling</p>
+                </div>
+                <div>
+                  <p className="font-bold text-emerald-400 font-mono">Stage 4: BI & AI</p>
+                  <p className="text-slate-400 text-[11px] mt-0.5">Power BI DAX & AI insight briefs</p>
+                </div>
+              </div>
             </div>
 
+            {/* Methodology Step Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {DATA_METHODOLOGY_STEPS.map((step, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#12141e] p-6 rounded-2xl border border-white/10 hover:border-orange-500/40 transition-colors relative flex flex-col justify-between"
+                  className="bg-slate-900/70 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/40 transition-colors relative flex flex-col justify-between glass-card"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl font-black font-mono text-orange-400/80">
+                      <span className="text-2xl font-black font-mono text-orange-400/90">
                         {step.step}
                       </span>
-                      <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-300">
-                        <Layers className="w-4 h-4" />
+                      <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300">
+                        <Layers className="w-4 h-4 text-orange-400" />
                       </div>
                     </div>
                     <h3 className="text-lg font-bold text-white mb-2">{step.name}</h3>
-                    <p className="text-xs text-gray-400 leading-relaxed">{step.desc}</p>
+                    <p className="text-xs text-slate-400 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -619,8 +666,8 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         </section>
 
         {/* Personal Human Philosophy Section */}
-        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-white/10">
-          <div className="max-w-5xl mx-auto bg-gradient-to-r from-orange-950/30 via-[#151825] to-indigo-950/30 p-8 sm:p-12 rounded-3xl border border-white/15 relative overflow-hidden">
+        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-800/80">
+          <div className="max-w-5xl mx-auto bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-900 p-8 sm:p-12 rounded-3xl border border-slate-700/80 relative overflow-hidden shadow-2xl glass-card">
             <div className="relative z-10 space-y-6">
               <div className="flex items-center gap-2 text-orange-400">
                 <Sparkles className="w-5 h-5" />
@@ -629,19 +676,19 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               <blockquote className="text-xl sm:text-3xl font-black text-white leading-snug">
                 "{PERSONAL_INFO.philosophy}"
               </blockquote>
-              <p className="text-sm text-gray-300 leading-relaxed">
+              <p className="text-sm text-slate-300 leading-relaxed">
                 As a Computer Science graduate with hands-on technical foundations in SQL, relational databases, and Python, I do not just treat data as numbers. I treat each metric as representing real customer behaviors, real employee careers, and real revenue opportunities. That human bridge is what makes analytics powerful.
               </p>
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   to="/about"
-                  className="px-5 py-2.5 rounded-xl bg-white text-black hover:bg-gray-200 text-xs font-bold uppercase tracking-wider transition-colors"
+                  className="px-5 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-200 text-xs font-bold uppercase tracking-wider transition-colors"
                 >
                   Read My Full Story & Leadership Role
                 </Link>
                 <Link
                   to="/contact"
-                  className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider border border-white/15 transition-colors"
+                  className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold uppercase tracking-wider border border-slate-700 transition-colors"
                 >
                   Schedule an Interview
                 </Link>
@@ -665,7 +712,7 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-white w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-100 w-full">
         {/* Header */}
         <div className="max-w-3xl mb-12">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
@@ -674,14 +721,14 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
           <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-4">
             Data Case Studies & Deep-Dives
           </h1>
-          <p className="text-base text-gray-300 leading-relaxed">
+          <p className="text-base text-slate-300 leading-relaxed">
             Each case study outlines the full lifecycle: business context, raw data hygiene, SQL star-schema modeling, Python exploratory data analysis, and Power BI executive scorecards with verified deliverables.
           </p>
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/10">
-          <span className="text-xs text-gray-400 flex items-center gap-1 mr-2">
+        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-slate-800">
+          <span className="text-xs text-slate-400 flex items-center gap-1 mr-2">
             <Filter className="w-3.5 h-3.5" /> Filter By:
           </span>
           {(['All', 'Business Intelligence', 'Python & EDA', 'SQL & Data Modeling'] as const).map((cat) => (
@@ -690,8 +737,8 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               onClick={() => setActiveFilter(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeFilter === cat
-                  ? 'bg-[#eb5939] text-white shadow-md'
-                  : 'bg-white/5 hover:bg-white/10 text-gray-300 border border-white/5'
+                  ? 'bg-orange-500 text-white shadow-md'
+                  : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-800'
               }`}
             >
               {cat}
@@ -704,43 +751,38 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
           {filteredStudies.map((study) => (
             <div
               key={study.id}
-              className="bg-[#11131c] rounded-3xl border border-white/10 overflow-hidden shadow-2xl hover:border-orange-500/40 transition-all duration-300"
+              className="bg-slate-900/70 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl hover:border-orange-500/40 transition-all duration-300 glass-card"
             >
-              {/* Image banner */}
+              {/* Full Unclipped Image Banner */}
               {study.image && (
-                <div className="relative h-64 sm:h-80 w-full overflow-hidden border-b border-white/10 bg-black/60 group">
+                <div className="w-full overflow-hidden border-b border-slate-800 bg-slate-950">
+                  <div className="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                    <span className="font-mono text-slate-300 flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-orange-400"></span>
+                      Production Dashboard Artifact
+                    </span>
+                    <button
+                      onClick={() => onSelectCaseStudy(study)}
+                      className="px-3 py-1 rounded bg-orange-500 hover:bg-orange-600 text-white text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-sm"
+                    >
+                      <Maximize2 className="w-3 h-3" /> Expand Full View
+                    </button>
+                  </div>
                   <img 
                     src={study.image} 
                     alt={study.title} 
-                    className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-700" 
+                    className="w-full h-auto object-contain block hover:scale-[1.01] transition-transform duration-500" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#11131c] via-black/30 to-transparent opacity-90" />
-                  <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                    <span className="text-xs font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-orange-400 border border-white/15">
-                      {study.category}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-4 left-6 right-6 z-10 flex justify-between items-end">
-                    <p className="text-xs font-mono text-gray-300 bg-black/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
-                      Deliverable: Production Power BI & Python Solution
-                    </p>
-                    <button
-                      onClick={() => onSelectCaseStudy(study)}
-                      className="px-3.5 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg shadow-orange-500/20"
-                    >
-                      <Maximize2 className="w-3.5 h-3.5" /> Enlarge
-                    </button>
-                  </div>
                 </div>
               )}
 
               <div className="p-6 sm:p-10">
                 {/* Meta Header */}
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
-                  <span className="text-xs text-gray-400 font-mono">
-                    Timeline: {study.timeline}
+                  <span className="text-xs text-orange-400 font-mono font-bold uppercase tracking-wider">
+                    {study.category} • {study.timeline}
                   </span>
-                  <span className="text-xs text-gray-400 font-medium">
+                  <span className="text-xs text-slate-400 font-medium">
                     Role: {study.role}
                   </span>
                 </div>
@@ -749,13 +791,13 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white mb-2">
                   {study.title}
                 </h2>
-                <p className="text-sm sm:text-base text-gray-300 mb-6 font-medium">
+                <p className="text-sm sm:text-base text-slate-300 mb-6 font-medium">
                   {study.subtitle}
                 </p>
 
                 {/* Behind the scenes personal note */}
                 {study.analystNotes && (
-                  <div className="bg-gradient-to-r from-orange-950/20 to-transparent border-l-3 border-orange-500 p-4 rounded-r-xl mb-6 text-xs sm:text-sm text-gray-300 italic">
+                  <div className="bg-slate-950/70 border-l-3 border-orange-500 p-4 rounded-r-xl mb-6 text-xs sm:text-sm text-slate-300 italic">
                     <span className="text-orange-400 font-bold block not-italic uppercase font-mono text-[11px] mb-1">
                       Analyst Reflection:
                     </span>
@@ -764,10 +806,10 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 )}
 
                 {/* Metrics Banner */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-black/40 p-4 rounded-2xl border border-white/5 mb-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-slate-950 p-4 rounded-2xl border border-slate-800 mb-6">
                   {study.metrics.map((m, mIdx) => (
                     <div key={mIdx} className="p-2.5">
-                      <p className="text-[10px] text-gray-400 font-mono uppercase">{m.label}</p>
+                      <p className="text-[10px] text-slate-400 font-mono uppercase">{m.label}</p>
                       <p className="text-xl sm:text-2xl font-black text-white mt-0.5">{m.value}</p>
                       {m.change && (
                         <p className="text-[11px] font-bold text-emerald-400 mt-0.5">{m.change}</p>
@@ -777,26 +819,26 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 </div>
 
                 {/* Problem vs Solution Summary */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-gray-300 mb-6">
-                  <div className="bg-white/5 p-4 rounded-xl border border-white/5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-300 mb-6">
+                  <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
                     <span className="font-bold text-red-400 uppercase tracking-wider block mb-1">
                       Problem Context:
                     </span>
-                    <p className="line-clamp-3 leading-relaxed">{study.problem}</p>
+                    <p className="leading-relaxed">{study.problem}</p>
                   </div>
-                  <div className="bg-white/5 p-4 rounded-xl border border-white/5">
+                  <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
                     <span className="font-bold text-emerald-400 uppercase tracking-wider block mb-1">
                       Analytical Solution:
                     </span>
-                    <p className="line-clamp-3 leading-relaxed">{study.solution}</p>
+                    <p className="leading-relaxed">{study.solution}</p>
                   </div>
                 </div>
 
                 {/* Tools & CTA */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800">
                   <div className="flex flex-wrap gap-1.5">
                     {study.tools.map((t, i) => (
-                      <span key={i} className="text-[11px] font-medium bg-white/5 text-gray-300 px-2.5 py-1 rounded-md border border-white/10">
+                      <span key={i} className="text-[11px] font-medium bg-slate-800/80 text-slate-300 px-2.5 py-1 rounded-md border border-slate-700/80 font-mono">
                         {t}
                       </span>
                     ))}
@@ -804,7 +846,7 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 
                   <button
                     onClick={() => onSelectCaseStudy(study)}
-                    className="px-5 py-2.5 rounded-xl bg-[#eb5939] hover:bg-[#d64b2d] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all"
+                    className="px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all"
                   >
                     Launch Full Interactive Case Study <ArrowRight className="w-4 h-4" />
                   </button>
@@ -836,7 +878,7 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
             <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white">
               Production Scripts, CTEs & DAX Formulas
             </h2>
-            <p className="text-xs sm:text-sm text-gray-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
               Inspect real queries and scripts written for data sanitization, RFM scoring, and variance reporting.
             </p>
           </div>
@@ -852,7 +894,7 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 const Skills = () => {
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-white w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-100 w-full">
         {/* Header */}
         <div className="max-w-3xl mb-12">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
@@ -861,7 +903,7 @@ const Skills = () => {
           <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-4">
             Data Tools, Languages & Methodologies
           </h1>
-          <p className="text-base text-gray-300 leading-relaxed">
+          <p className="text-base text-slate-300 leading-relaxed">
             From low-level SQL queries and Python data frames to executive Power BI dashboards and prompt-engineered summaries, here is a comprehensive breakdown of my capabilities.
           </p>
         </div>
@@ -871,7 +913,7 @@ const Skills = () => {
           {TECHNICAL_SKILLS.map((cat, idx) => (
             <div 
               key={idx}
-              className="bg-[#11131c] p-6 rounded-2xl border border-white/10 hover:border-orange-500/30 transition-all flex flex-col justify-between"
+              className="bg-slate-900/70 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all flex flex-col justify-between glass-card"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -883,7 +925,7 @@ const Skills = () => {
                   </span>
                 </div>
 
-                <p className="text-xs text-gray-400 mb-6 leading-relaxed">
+                <p className="text-xs text-slate-400 mb-6 leading-relaxed">
                   {cat.description}
                 </p>
 
@@ -892,12 +934,12 @@ const Skills = () => {
                   {cat.skills.map((skill, sIdx) => (
                     <div key={sIdx}>
                       <div className="flex justify-between items-center text-xs mb-1">
-                        <span className="font-medium text-gray-200">{skill.name}</span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-orange-400 border border-white/5">
+                        <span className="font-medium text-slate-200">{skill.name}</span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-orange-400 border border-slate-700">
                           {skill.tag}
                         </span>
                       </div>
-                      <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                      <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full" 
                           style={{ width: `${skill.level}%` }}
@@ -912,7 +954,7 @@ const Skills = () => {
         </div>
 
         {/* Tool Stack Badges */}
-        <div className="bg-[#12141f] p-8 sm:p-10 rounded-3xl border border-white/10 mb-16">
+        <div className="bg-slate-900/70 p-8 sm:p-10 rounded-3xl border border-slate-800 mb-16 glass-card">
           <h3 className="text-xl font-bold uppercase tracking-wider text-white mb-6 flex items-center gap-2">
             <Cpu className="w-5 h-5 text-orange-400" />
             Software & Environment Ecosystem
@@ -932,25 +974,25 @@ const Skills = () => {
               { name: 'DAX', category: 'Data Analysis Expr' },
               { name: 'Prompt Eng.', category: 'AI Summaries' },
             ].map((tool, i) => (
-              <div key={i} className="bg-white/5 p-3 rounded-xl border border-white/5 text-center">
+              <div key={i} className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
                 <p className="font-bold text-xs text-white">{tool.name}</p>
-                <p className="text-[10px] text-gray-400 font-mono mt-0.5">{tool.category}</p>
+                <p className="text-[10px] text-slate-400 font-mono mt-0.5">{tool.category}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Call to action */}
-        <div className="text-center bg-gradient-to-r from-orange-600/20 to-indigo-600/20 p-8 rounded-3xl border border-white/15">
+        <div className="text-center bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 p-8 rounded-3xl border border-slate-800">
           <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-2">
             Have a Data Challenge or Open Role?
           </h3>
-          <p className="text-sm text-gray-300 max-w-lg mx-auto mb-6">
+          <p className="text-sm text-slate-300 max-w-lg mx-auto mb-6">
             I am eager to contribute clean code, structured SQL queries, and sharp analytical insights to your team.
           </p>
           <Link
             to="/contact"
-            className="px-6 py-3 rounded-xl bg-[#eb5939] hover:bg-[#d64b2d] text-white text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 transition-all"
+            className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 transition-all shadow-md"
           >
             Connect with Anmol <ArrowRight className="w-4 h-4" />
           </Link>
@@ -965,7 +1007,7 @@ const Skills = () => {
 const About = () => {
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-white w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-100 w-full">
         {/* Header */}
         <div className="max-w-3xl mb-12">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
@@ -974,7 +1016,7 @@ const About = () => {
           <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-4">
             Anmol Kumar
           </h1>
-          <p className="text-base text-gray-300 leading-relaxed">
+          <p className="text-base text-slate-300 leading-relaxed">
             Computer Science Graduate • Data Analyst • Academic Class Representative
           </p>
         </div>
@@ -983,35 +1025,41 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
           
           {/* Colorful Vibrant Photo Card */}
-          <div className="lg:col-span-5 relative group">
-            {/* Colorful Ambient Glow Layer */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-orange-500 via-amber-500 to-teal-500 rounded-3xl blur-xl opacity-60 group-hover:opacity-85 transition-opacity duration-700" />
-            
-            <div className="relative z-10 rounded-3xl overflow-hidden border-2 border-white/20 bg-[#12141e] shadow-2xl">
-              {/* True Full-Color Image (No Grayscale!) */}
-              <img
-                src="/about-pic.jpg"
-                alt="Anmol Kumar - Full Color Portrait"
-                className="w-full aspect-[4/5] object-cover object-center group-hover:scale-105 transition-all duration-700"
-              />
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="w-full max-w-[400px] rounded-3xl bg-slate-900/90 border border-slate-700/80 shadow-2xl overflow-hidden glass-card">
               
-              {/* Vibrant Badge Overlay */}
-              <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-r from-black/90 to-[#12141e]/90 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-xl">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-bold text-sm text-white">Anmol Kumar</p>
-                    <p className="text-[11px] text-orange-400 font-mono">Chandigarh University CSE (2022–2026)</p>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center">
-                    <FileCheck2 className="w-4 h-4" />
-                  </div>
+              <div className="bg-slate-950/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                <span className="font-mono text-slate-300 font-bold">anmol_kumar.jpg</span>
+                <span className="text-[10px] font-mono text-emerald-400">Chandigarh University CSE</span>
+              </div>
+
+              {/* Natural Full-Color Photography */}
+              <div className="p-4 bg-gradient-to-b from-slate-900 to-slate-950">
+                <div className="rounded-2xl overflow-hidden border border-slate-800 shadow-md">
+                  <img
+                    src="/about-pic.jpg"
+                    alt="Anmol Kumar - Full Color Portrait"
+                    className="w-full aspect-[4/4.8] object-cover object-top hover:scale-[1.02] transition-transform duration-500"
+                  />
                 </div>
               </div>
+
+              {/* Card Bottom Meta */}
+              <div className="p-5 bg-slate-950/90 border-t border-slate-800 space-y-2">
+                <div className="flex items-center justify-between">
+                  <p className="font-bold text-white text-base">Anmol Kumar</p>
+                  <span className="text-xs text-emerald-400 font-mono font-bold">CGPA: 7.66 / 10</span>
+                </div>
+                <p className="text-xs text-slate-400">
+                  Academic Class Representative (2024–2025) • 70+ Students
+                </p>
+              </div>
+
             </div>
           </div>
 
           {/* Biography Text & Human Context */}
-          <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
+          <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
             <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-snug">
               Passionate about turning raw data into meaningful business intelligence.
             </h2>
@@ -1025,23 +1073,23 @@ const About = () => {
               In addition to traditional analytics, I have actively mastered AI-assisted data analysis and prompt engineering to accelerate report compilation, automate data anomalies summarization, and craft executive briefings in minutes rather than days.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/10 font-mono text-xs">
+            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-800 font-mono text-xs">
               <div>
-                <span className="text-[10px] uppercase text-gray-500 font-bold block mb-1">Education</span>
+                <span className="text-[10px] uppercase text-slate-500 font-bold block mb-1">Education</span>
                 <span className="font-bold text-white block">B.E. Computer Science</span>
-                <span className="text-gray-400">Chandigarh University (CGPA 7.66)</span>
+                <span className="text-slate-400">Chandigarh University (CGPA 7.66)</span>
               </div>
               <div>
-                <span className="text-[10px] uppercase text-gray-500 font-bold block mb-1">Location</span>
+                <span className="text-[10px] uppercase text-slate-500 font-bold block mb-1">Location</span>
                 <span className="font-bold text-white block">Bengaluru, Karnataka</span>
-                <span className="text-gray-400">Available across India & Remote</span>
+                <span className="text-slate-400">Available across India & Remote</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Leadership Spotlight: Academic Class Representative */}
-        <div className="bg-[#11131c] rounded-3xl border border-white/10 p-8 sm:p-12 mb-20">
+        <div className="bg-slate-900/70 rounded-3xl border border-slate-800 p-8 sm:p-12 mb-20 glass-card">
           <div className="flex items-center gap-3 text-orange-400 mb-4">
             <Users className="w-6 h-6" />
             <span className="text-xs font-mono font-bold uppercase tracking-widest">
@@ -1052,26 +1100,26 @@ const About = () => {
           <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white mb-4">
             Academic Class Representative (70+ Students)
           </h2>
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-8 max-w-3xl">
+          <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-8 max-w-3xl">
             Elected as the official liaison representing a class of 70+ engineering students to university faculty, department chairs, and administrative leadership. Used structured tracking spreadsheets to streamline communications and eliminate operational friction.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white/5 p-5 rounded-2xl border border-white/5">
+            <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800">
               <span className="text-orange-400 font-bold text-sm block mb-2">Bridge of Communication</span>
-              <p className="text-xs text-gray-300 leading-relaxed">
+              <p className="text-xs text-slate-300 leading-relaxed">
                 Served as the primary channel between faculty members and 70+ students, relaying critical curriculum guidelines, project rubrics, and administrative policies with zero ambiguity.
               </p>
             </div>
-            <div className="bg-white/5 p-5 rounded-2xl border border-white/5">
+            <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800">
               <span className="text-orange-400 font-bold text-sm block mb-2">Schedule & Exam Logistics</span>
-              <p className="text-xs text-gray-300 leading-relaxed">
+              <p className="text-xs text-slate-300 leading-relaxed">
                 Coordinated academic schedules, lab batch rotations, and examination preparation schedules, avoiding timetable clashes across 4 consecutive academic semesters.
               </p>
             </div>
-            <div className="bg-white/5 p-5 rounded-2xl border border-white/5">
+            <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800">
               <span className="text-orange-400 font-bold text-sm block mb-2">Issue Resolution & Mediation</span>
-              <p className="text-xs text-gray-300 leading-relaxed">
+              <p className="text-xs text-slate-300 leading-relaxed">
                 Resolved 180+ student academic concerns by collaborating directly with professors and administrative heads with a 24-hour turnaround SLA.
               </p>
             </div>
@@ -1081,7 +1129,7 @@ const About = () => {
         {/* Education & Certifications Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
           {/* Education Card */}
-          <div className="bg-[#11131c] p-8 rounded-3xl border border-white/10">
+          <div className="bg-slate-900/70 p-8 rounded-3xl border border-slate-800 glass-card">
             <div className="flex items-center gap-2 text-orange-400 mb-4">
               <GraduationCap className="w-5 h-5" />
               <span className="text-xs font-mono font-bold uppercase tracking-widest">Formal Education</span>
@@ -1089,17 +1137,17 @@ const About = () => {
             <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-1">
               {EDUCATION.degree}
             </h3>
-            <p className="text-sm text-gray-300 font-medium">{EDUCATION.institution}</p>
-            <div className="flex items-center gap-4 text-xs font-mono text-gray-400 my-4">
+            <p className="text-sm text-slate-300 font-medium">{EDUCATION.institution}</p>
+            <div className="flex items-center gap-4 text-xs font-mono text-slate-400 my-4">
               <span>{EDUCATION.period}</span>
               <span>•</span>
               <span className="text-emerald-400 font-bold">CGPA: {EDUCATION.cgpa}</span>
             </div>
-            <div className="pt-4 border-t border-white/10">
-              <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Relevant Coursework:</p>
+            <div className="pt-4 border-t border-slate-800">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Relevant Coursework:</p>
               <div className="flex flex-wrap gap-2">
                 {EDUCATION.coursework.map((c, i) => (
-                  <span key={i} className="text-[11px] bg-white/5 text-gray-300 px-3 py-1 rounded-md border border-white/5">
+                  <span key={i} className="text-[11px] bg-slate-950 text-slate-300 px-3 py-1 rounded-md border border-slate-800 font-mono">
                     {c}
                   </span>
                 ))}
@@ -1108,7 +1156,7 @@ const About = () => {
           </div>
 
           {/* Certifications Card */}
-          <div className="bg-[#11131c] p-8 rounded-3xl border border-white/10">
+          <div className="bg-slate-900/70 p-8 rounded-3xl border border-slate-800 glass-card">
             <div className="flex items-center gap-2 text-orange-400 mb-4">
               <Award className="w-5 h-5" />
               <span className="text-xs font-mono font-bold uppercase tracking-widest">Verified Credentials</span>
@@ -1118,19 +1166,19 @@ const About = () => {
             </h3>
             <div className="space-y-4">
               {CERTIFICATIONS.map((cert, i) => (
-                <div key={i} className="bg-white/5 p-4 rounded-2xl border border-white/5 hover:border-white/20 transition-all">
+                <div key={i} className="bg-slate-950 p-4 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
                   <div className="flex justify-between items-start gap-2">
                     <div>
                       <h4 className="font-bold text-sm text-white">{cert.title}</h4>
-                      <p className="text-xs text-gray-400 mt-0.5">{cert.issuer} • {cert.date}</p>
+                      <p className="text-xs text-slate-400 mt-0.5">{cert.issuer} • {cert.date}</p>
                     </div>
-                    <span className="text-[10px] font-mono text-gray-400 border border-white/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-mono text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 rounded">
                       Verified
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-1.5 mt-3">
                     {cert.skills.map((s, sI) => (
-                      <span key={sI} className="text-[10px] text-gray-300 bg-black/40 px-2 py-0.5 rounded">
+                      <span key={sI} className="text-[10px] text-slate-300 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 font-mono">
                         {s}
                       </span>
                     ))}
@@ -1181,7 +1229,7 @@ const Contact = () => {
 
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-white w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-100 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Direct Info */}
@@ -1193,110 +1241,110 @@ const Contact = () => {
               <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-4">
                 Let's Discuss Opportunities.
               </h1>
-              <p className="text-base text-gray-300 leading-relaxed">
+              <p className="text-base text-slate-300 leading-relaxed">
                 I am actively interviewing for entry-level Data Analyst, Business Intelligence Analyst, and Junior Analytics roles. Feel free to send a message, connect on LinkedIn, or schedule an exploratory chat.
               </p>
             </div>
 
             {/* Availability Banner */}
-            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-3">
+            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping" />
               <div>
                 <p className="text-xs font-bold text-emerald-300">Ready for Immediate Onboarding</p>
-                <p className="text-[11px] text-gray-400">Open to Bengaluru, onsite roles, and remote opportunities.</p>
+                <p className="text-[11px] text-slate-400">Open to Bengaluru, onsite roles, and remote opportunities.</p>
               </div>
             </div>
 
             {/* Contact Details List */}
-            <div className="space-y-4 pt-2">
+            <div className="space-y-3.5 pt-2">
               <a 
                 href="mailto:anmol.krhjp@gmail.com"
-                className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-orange-500/50 transition-all group"
+                className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-orange-500/50 transition-all group glass-card"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-gray-400 uppercase font-mono">Email Address</p>
+                    <p className="text-[10px] text-slate-400 uppercase font-mono">Email Address</p>
                     <p className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
                       anmol.krhjp@gmail.com
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
+                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
               </a>
 
               <a 
                 href="tel:+919508412334"
-                className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-orange-500/50 transition-all group"
+                className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 transition-all group glass-card"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-green-500/20 text-green-400 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-gray-400 uppercase font-mono">Phone Number</p>
-                    <p className="text-sm font-bold text-white group-hover:text-green-400 transition-colors">
+                    <p className="text-[10px] text-slate-400 uppercase font-mono">Phone Number</p>
+                    <p className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
                       +91 95084 12334
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
+                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
               </a>
 
               <a 
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all group"
+                className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 transition-all group glass-card"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
                     <LinkedinIcon className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-gray-400 uppercase font-mono">LinkedIn Profile</p>
+                    <p className="text-[10px] text-slate-400 uppercase font-mono">LinkedIn Profile</p>
                     <p className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
                       linkedin.com/in/anmol-kumar4
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
+                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
               </a>
 
               <a 
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all group"
+                className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 transition-all group glass-card"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
                     <GithubIcon className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-gray-400 uppercase font-mono">GitHub Repositories</p>
+                    <p className="text-[10px] text-slate-400 uppercase font-mono">GitHub Repositories</p>
                     <p className="text-sm font-bold text-white group-hover:text-purple-400 transition-colors">
                       github.com/negeinno
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-white transition-colors" />
+                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
               </a>
 
               <a 
                 href={PERSONAL_INFO.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-orange-500/10 border border-orange-500/30 hover:bg-orange-500/20 transition-all group"
+                className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-orange-500/15 to-amber-500/10 border border-orange-500/30 hover:border-orange-500/60 transition-all group glass-card"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center shadow-sm">
                     <Download className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-orange-300 uppercase font-mono font-bold">Curriculum Vitae</p>
+                    <p className="text-[10px] text-orange-400 uppercase font-mono font-bold">Curriculum Vitae</p>
                     <p className="text-sm font-bold text-white">Download Resume PDF</p>
                   </div>
                 </div>
@@ -1306,7 +1354,7 @@ const Contact = () => {
           </div>
 
           {/* Right Column: Interactive Form */}
-          <div className="lg:col-span-7 bg-[#11131c] p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
+          <div className="lg:col-span-7 bg-slate-900/70 p-8 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl glass-card">
             {status === 'submitted' ? (
               <div className="text-center py-16 space-y-6">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto">
@@ -1315,12 +1363,12 @@ const Contact = () => {
                 <h3 className="text-3xl font-black uppercase tracking-tight text-white">
                   Message Transmitted!
                 </h3>
-                <p className="text-sm text-gray-300 max-w-sm mx-auto leading-relaxed">
+                <p className="text-sm text-slate-300 max-w-sm mx-auto leading-relaxed">
                   Thank you for reaching out. I receive form submissions directly in my inbox and will get back to you within 24 hours.
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider transition-colors"
+                  className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold uppercase tracking-wider transition-colors"
                 >
                   Send Another Message
                 </button>
@@ -1331,14 +1379,14 @@ const Contact = () => {
                   <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-1">
                     Send a Message or Interview Invitation
                   </h3>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-slate-400">
                     Fill out the form below to connect directly with Anmol.
                   </p>
                 </div>
 
                 {/* Inquiry Type Chips */}
                 <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">
                     Topic / Opportunity Type:
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -1354,8 +1402,8 @@ const Contact = () => {
                         onClick={() => setInquiryType(chip)}
                         className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-all ${
                           inquiryType === chip
-                            ? 'bg-[#eb5939] text-white shadow-md'
-                            : 'bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10'
+                            ? 'bg-orange-500 text-white shadow-md'
+                            : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
                         }`}
                       >
                         {chip}
@@ -1366,7 +1414,7 @@ const Contact = () => {
 
                 {/* Inputs */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Your Name
                   </label>
                   <input
@@ -1375,12 +1423,12 @@ const Contact = () => {
                     required
                     placeholder="e.g. Sarah Jenkins (Hiring Manager)"
                     disabled={status === 'submitting'}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Your Email
                   </label>
                   <input
@@ -1389,12 +1437,12 @@ const Contact = () => {
                     required
                     placeholder="sarah@company.com"
                     disabled={status === 'submitting'}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Message / Opportunity Scope
                   </label>
                   <textarea
@@ -1403,14 +1451,14 @@ const Contact = () => {
                     rows={4}
                     placeholder="Hi Anmol, we are looking for a Data Analyst with Power BI and SQL skills to join our analytics team..."
                     disabled={status === 'submitting'}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full py-4 rounded-xl bg-[#eb5939] hover:bg-[#d64b2d] text-white font-bold uppercase tracking-wider text-xs shadow-lg shadow-orange-500/20 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold uppercase tracking-wider text-xs shadow-lg shadow-orange-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
                 >
                   {status === 'submitting' ? 'Dispatching...' : 'Submit Message'}
                   <ArrowRight className="w-4 h-4" />
@@ -1446,7 +1494,7 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#0a0c14] text-gray-100 font-sans selection:bg-[#eb5939] selection:text-white flex flex-col relative">
+      <div className="min-h-screen bg-[#0b0f19] text-slate-100 font-sans selection:bg-orange-500 selection:text-white flex flex-col relative">
         <GridBackground />
         <NavBar />
         
