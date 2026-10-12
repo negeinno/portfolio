@@ -40,7 +40,7 @@ import {
 } from './components/InteractiveDataVisuals';
 
 import { CaseStudyDetailModal } from './components/CaseStudyDetailModal';
-import { LinkedinIcon, GithubIcon } from './components/Icons';
+import { LinkedinIcon, GithubIcon, AKLogo } from './components/Icons';
 import { FishOceanBackground } from './components/FishOceanBackground';
 
 // --- Shared UI Elements ---
@@ -78,10 +78,8 @@ const NavBar = () => {
     <>
       <nav className="sticky top-0 z-50 backdrop-blur-2xl bg-white/90 border-b border-slate-200/90 px-6 md:px-12 py-3.5 text-slate-800 transition-all shadow-xs">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-3 group" onClick={() => setIsOpen(false)}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center font-black text-white text-base shadow-sm shadow-orange-500/30 group-hover:scale-105 transition-transform border border-orange-400/40">
-              AK
-            </div>
+          <Link to="/" className="flex items-center gap-3.5 group" onClick={() => setIsOpen(false)}>
+            <AKLogo className="w-10 h-10 group-hover:scale-105 transition-transform shrink-0" />
             <div>
               <span className="text-base font-bold tracking-tight block leading-tight text-slate-900 group-hover:text-orange-600 transition-colors">
                 Anmol Kumar
@@ -198,10 +196,8 @@ const Footer = () => (
   <footer className="bg-slate-100 text-slate-600 border-t border-slate-200 py-12 px-6 md:px-12 relative z-10">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div>
-        <div className="flex items-center gap-2 mb-2">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-xs font-black text-white shadow-xs">
-            AK
-          </div>
+        <div className="flex items-center gap-2.5 mb-2">
+          <AKLogo className="w-8 h-8 shrink-0" />
           <span className="font-bold text-base text-slate-900">Anmol Kumar</span>
           <span className="text-slate-400">•</span>
           <span className="text-xs text-orange-600 font-mono font-semibold">Data Analyst & BI Specialist</span>
