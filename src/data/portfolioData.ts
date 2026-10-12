@@ -5,11 +5,13 @@ export interface CaseStudy {
   category: 'Business Intelligence' | 'Python & EDA' | 'SQL & Data Modeling' | 'AI Analytics';
   timeline: string;
   role: string;
+  image: string;
   tools: string[];
   metrics: { label: string; value: string; change?: string; positive?: boolean }[];
   summary: string;
   problem: string;
   solution: string;
+  analystNotes: string; // Personal human reflection & behind-the-scenes
   methodology: {
     step: string;
     title: string;
@@ -40,7 +42,7 @@ export const PERSONAL_INFO = {
   linkedin: "https://linkedin.com/in/anmol-kumar4",
   github: "https://github.com/negeinno",
   resumeUrl: "/Anmol_Kumar_Resume.pdf",
-  bio: "Computer Science graduate with a strong foundation in SQL, Python, Microsoft Excel, and data analysis. Passionate about transforming raw data into meaningful business insights through systematic data cleaning, exploratory data analysis (EDA), interactive visualization, and automated reporting. Skilled in AI-assisted analytics and business intelligence, with hands-on experience in relational databases and KPI modeling.",
+  bio: "Computer Science graduate from Chandigarh University with a strong foundation in SQL, Python, Microsoft Excel, and data analysis. Passionate about transforming raw data into meaningful business insights through systematic data cleaning, exploratory data analysis (EDA), interactive visualization, and automated reporting. Skilled in AI-assisted analytics and business intelligence, with hands-on experience in relational databases and KPI modeling.",
   philosophy: "Data without empathy and context is just rows and columns. My mission is to translate complex numerical distributions into intuitive, human-centered narratives that drive measurable business outcomes.",
   status: "Open to Entry-Level Data Analyst & BI Roles",
 };
@@ -129,6 +131,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: "Business Intelligence",
     timeline: "April – June 2026",
     role: "Lead Data Analyst & BI Developer",
+    image: "/case-studies/sales-dashboard.jpg",
     tools: ["Power BI", "SQL (MySQL)", "Python (Pandas)", "Microsoft Excel", "Prompt Engineering"],
     metrics: [
       { label: "Total Revenue Tracked", value: "$4.82M", change: "+18.4% YoY", positive: true },
@@ -139,6 +142,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     summary: "Built an enterprise-grade interactive sales analytics suite enabling C-level leaders and sales managers to monitor revenue pacing, margin retention, regional performance disparities, and repeat customer retention. Integrated an automated AI summarization layer to generate weekly executive takeaway memos.",
     problem: "The sales leadership team relied on disconnected, multi-sheet Excel files exported from legacy billing software. Inconsistent date formats, unhandled refund duplicates, disparate currency conversions, and lack of customer classification meant executives spent over 14 hours every Monday manually compiling figures with zero visibility into regional customer churn or product cross-sell opportunities.",
     solution: "Architected a unified analytical pipeline: ingestion and sanitization via Python/Pandas scripts, staging in a relational MySQL star schema with dedicated dimension tables (Date, Customer, Product, Region) and a transactional Fact_Sales table. Created an interactive Power BI dashboard featuring dynamic DAX time-intelligence measures (YoY, MoM, rolling 90-day margin), and integrated prompt-engineered AI summarization routines to output clear stakeholder narratives.",
+    analystNotes: "When I first received the raw export, it had over 120,000 messy rows with three different date formatting standards ('DD-MM-YYYY' and 'YYYY/MM/DD'), negative quantities for unflagged return items, and blank customer region tags. Building the Python cleaning script first saved dozens of hours of downstream query debugging in MySQL and Power BI.",
     methodology: [
       {
         step: "01. Data Ingestion & Sanitization",
@@ -274,6 +278,7 @@ RETURN
     category: "Business Intelligence",
     timeline: "January – March 2026",
     role: "Data Analyst & Dashboard Designer",
+    image: "/case-studies/hr-dashboard.jpg",
     tools: ["Power BI", "Python (NumPy, Matplotlib)", "SQL (MySQL)", "Microsoft Excel", "AI Workforce Analytics"],
     metrics: [
       { label: "Workforce Records Analyzed", value: "1,450+", change: "Full Headcount", positive: true },
@@ -284,6 +289,7 @@ RETURN
     summary: "Engineered a high-impact People Analytics solution for analyzing employee performance tiers, tenure distribution, salary benchmarking, voluntary turnover, and department recruitment velocity. Incorporated predictive indicators and AI decision-support prompts to alert managers about high-flight-risk cohorts.",
     problem: "Human Resources leadership faced a spike in talent turnover within critical engineering and sales roles, but could only view attrition in rear-view quarterly spreadsheets. Key drivers like promotion stagnation, manager turnover, overtime fatigue, and compensation discrepancies went unnoticed until exit interviews, causing costly replacement delays of up to 45 days per vacancy.",
     solution: "Designed a centralized People Analytics system. Processed multi-year HR records through Python for data imputation, created standardized MySQL views tracking tenure cohorts, built a rich Power BI dashboard with department drill-down slices, and crafted an AI-assisted diagnostic assistant that generates intervention suggestions for managers.",
+    analystNotes: "The key revelation was uncovering that salary alone didn't explain software engineering resignations; engineers with >3 years without internal title promotions had 4x turnover rates even when paid above median. Once we visualized this in a scatter plot heatmap, HR leadership instituted a fast-track junior-to-mid career ladder.",
     methodology: [
       {
         step: "01. Dataset Harmonization",
@@ -383,6 +389,7 @@ GROUP BY d.department_id, d.department_name;`
     category: "SQL & Data Modeling",
     timeline: "2024 – 2025",
     role: "Academic Class Representative & Operations Coordinator",
+    image: "/case-studies/pipeline-architecture.jpg",
     tools: ["Microsoft Excel", "Google Sheets Automation", "Data Tracking", "Communication Protocols"],
     metrics: [
       { label: "Class Size Coordinated", value: "70+", change: "Students", positive: true },
@@ -393,6 +400,7 @@ GROUP BY d.department_id, d.department_name;`
     summary: "Served as the official Academic Class Representative at Chandigarh University, acting as the primary operational conduit between senior university faculty, academic departments, and a cohort of 70+ engineering students. Built a systematic query-tracking and timetable logistics dashboard to streamline communications.",
     problem: "Academic announcements, exam rescheduling, laboratory batch rotations, and student academic grievances were scattered across disparate messaging groups and verbal notices. This generated missed deadlines, overlapping exam prep sessions, and delayed administrative resolutions.",
     solution: "Established a structured data coordination system using centralized Excel and shared spreadsheets to log student concerns, categorize issues (curriculum, lab equipment, attendance discrepancies, exam dates), and track time-to-resolution. Coordinated with faculty to optimize lab batch splits and examination preparation schedules.",
+    analystNotes: "Running logistics for 70+ engineering peers taught me the most crucial analytics lesson: a dashboard is completely useless if people don't trust the data or can't act on it immediately. Empathy and clear communication make data actionable.",
     methodology: [
       {
         step: "01. Centralized Issue Tracker",

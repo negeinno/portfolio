@@ -10,7 +10,9 @@ import {
   TrendingUp, 
   AlertCircle, 
   Lightbulb, 
-  ArrowRight
+  ArrowRight,
+  Sparkles,
+  Maximize2
 } from 'lucide-react';
 import type { CaseStudy } from '../data/portfolioData';
 import { GithubIcon } from './Icons';
@@ -25,16 +27,16 @@ export const CaseStudyDetailModal: React.FC<CaseStudyDetailModalProps> = ({ case
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-10 bg-black/80 backdrop-blur-md overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-10 bg-black/85 backdrop-blur-md overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="relative w-full max-w-5xl bg-[#10121a] text-white border border-white/15 rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col"
+          className="relative w-full max-w-5xl bg-[#0f111a] text-white border border-white/15 rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col"
         >
           {/* Modal Top Header */}
-          <div className="sticky top-0 z-30 bg-[#161924]/95 backdrop-blur-md border-b border-white/10 px-6 py-5 flex items-center justify-between">
+          <div className="sticky top-0 z-30 bg-[#151824]/95 backdrop-blur-md border-b border-white/10 px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="px-3 py-1 rounded-full text-[11px] font-bold tracking-widest uppercase bg-orange-500/20 text-orange-400 border border-orange-500/30">
                 {caseStudy.category}
@@ -75,6 +77,33 @@ export const CaseStudyDetailModal: React.FC<CaseStudyDetailModalProps> = ({ case
                 ))}
               </div>
             </div>
+
+            {/* High-Resolution Dashboard Visual Showcase */}
+            {caseStudy.image && (
+              <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-black/60 shadow-2xl group">
+                <div className="absolute top-3 left-3 z-10 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[11px] font-mono text-orange-400 flex items-center gap-1.5">
+                  <Maximize2 className="w-3 h-3" /> Production BI Dashboard Interface
+                </div>
+                <img 
+                  src={caseStudy.image} 
+                  alt={caseStudy.title} 
+                  className="w-full max-h-[460px] object-cover object-top group-hover:scale-[1.02] transition-transform duration-700" 
+                />
+              </div>
+            )}
+
+            {/* Behind-the-Scenes Human Analyst Notes */}
+            {caseStudy.analystNotes && (
+              <div className="bg-gradient-to-r from-orange-950/30 to-amber-950/20 border-l-4 border-orange-500 p-5 rounded-r-2xl">
+                <div className="flex items-center gap-2 text-orange-400 font-mono text-xs uppercase font-bold mb-2">
+                  <Sparkles className="w-4 h-4" />
+                  <span>Anmol's Field Notes • Behind The Scenes</span>
+                </div>
+                <p className="text-sm text-gray-300 leading-relaxed italic">
+                  "{caseStudy.analystNotes}"
+                </p>
+              </div>
+            )}
 
             {/* Metrics Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gradient-to-br from-white/5 to-white/[0.02] p-5 rounded-2xl border border-white/10">

@@ -17,7 +17,11 @@ import {
   GraduationCap, 
   Users, 
   ChevronRight,
-  Filter
+  Filter,
+  Maximize2,
+  Eye,
+  FileCheck2,
+  Workflow
 } from 'lucide-react';
 
 import { 
@@ -244,6 +248,8 @@ const PageTransition = ({ children }: { children: React.ReactNode }) => (
 
 // 1. HOME PAGE
 const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => void }) => {
+  const [salesViewMode, setSalesViewMode] = useState<'interactive' | 'screenshot'>('interactive');
+
   return (
     <PageTransition>
       <div className="w-full text-white">
@@ -254,13 +260,13 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
             
             {/* Left Column: Headline & Bio */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-mono font-semibold">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-mono font-semibold">
                 <span className="w-2 h-2 rounded-full bg-[#eb5939] animate-pulse"></span>
                 Seeking Entry-Level Data Analyst & BI Roles
               </div>
 
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.95] text-white">
-                Transforming <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">Raw Data</span> Into High-Impact Business Decisions.
+                Transforming <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400">Raw Data</span> Into High-Impact Business Decisions.
               </h1>
 
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl font-normal">
@@ -400,33 +406,69 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         {/* Featured Live Visualizer: AI Sales Insights Dashboard */}
         <section className="py-16 md:py-24 px-6 md:px-12 border-b border-white/10">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
               <div>
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
-                  Featured Case Study Demo
+                  Featured Case Study Showcase
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
-                  Interactive AI Sales Analytics
+                  AI Sales Executive Intelligence Dashboard
                 </h2>
                 <p className="text-sm sm:text-base text-gray-400 max-w-2xl mt-2">
-                  Experience a simulated version of the executive dashboard I built using SQL, Python, Excel, and Power BI. Filter by region and observe dynamic KPI re-computation and AI summary generation.
+                  Engineered using SQL, Python, Excel, and Power BI. Experience both the live interactive data model simulator and the production dashboard interface.
                 </p>
               </div>
 
-              <button
-                onClick={() => onSelectCaseStudy(CASE_STUDIES[0])}
-                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider border border-white/15 flex items-center gap-2 self-start md:self-auto transition-colors"
-              >
-                Read Full Case Study <ArrowRight className="w-4 h-4" />
-              </button>
+              {/* View Switcher Pills */}
+              <div className="flex items-center gap-2 bg-white/5 p-1 rounded-xl border border-white/10 self-start md:self-auto">
+                <button
+                  onClick={() => setSalesViewMode('interactive')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                    salesViewMode === 'interactive'
+                      ? 'bg-[#eb5939] text-white shadow-md'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  <Workflow className="w-3.5 h-3.5" /> Interactive Model
+                </button>
+                <button
+                  onClick={() => setSalesViewMode('screenshot')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+                    salesViewMode === 'screenshot'
+                      ? 'bg-[#eb5939] text-white shadow-md'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  <Eye className="w-3.5 h-3.5" /> BI Dashboard UI
+                </button>
+                <button
+                  onClick={() => onSelectCaseStudy(CASE_STUDIES[0])}
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold text-orange-400 hover:text-orange-300 ml-1 border-l border-white/10 pl-2"
+                >
+                  Full Breakdown →
+                </button>
+              </div>
             </div>
 
-            {/* Embedded Live Dashboard Visualizer */}
-            <SalesDashboardVisualizer />
+            {/* View container */}
+            {salesViewMode === 'interactive' ? (
+              <SalesDashboardVisualizer />
+            ) : (
+              <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-black/60 shadow-2xl group cursor-pointer" onClick={() => onSelectCaseStudy(CASE_STUDIES[0])}>
+                <div className="absolute top-4 left-4 z-10 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-xs font-mono text-orange-400 flex items-center gap-2">
+                  <Maximize2 className="w-3.5 h-3.5" /> Production Power BI Multi-Regional Analytics Screen
+                </div>
+                <img 
+                  src="/case-studies/sales-dashboard.jpg" 
+                  alt="Sales Dashboard UI" 
+                  className="w-full max-h-[580px] object-cover object-top group-hover:scale-[1.01] transition-transform duration-500" 
+                />
+              </div>
+            )}
           </div>
         </section>
 
-        {/* Featured Case Studies Grid */}
+        {/* Featured Case Studies Grid with Visual Artwork */}
         <section className="py-16 md:py-24 px-6 md:px-12 border-b border-white/10">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -437,7 +479,7 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 Selected Data Case Studies
               </h2>
               <p className="text-sm sm:text-base text-gray-400">
-                Detailed breakdowns demonstrating business problem scoping, SQL data mart modeling, Python preprocessing, and executive storytelling.
+                Detailed breakdowns demonstrating business problem scoping, SQL data mart modeling, Python preprocessing, and executive storytelling with real dashboard deliverables.
               </p>
             </div>
 
@@ -448,43 +490,63 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                   onClick={() => onSelectCaseStudy(study)}
                   className="group bg-[#11131e] rounded-3xl border border-white/10 overflow-hidden hover:border-orange-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10 cursor-pointer flex flex-col justify-between"
                 >
-                  <div className="p-7 sm:p-9 space-y-6">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-orange-500/15 text-orange-400 border border-orange-500/20">
-                        {study.category}
-                      </span>
-                      <span className="text-xs text-gray-500 font-mono">
-                        {study.timeline}
-                      </span>
-                    </div>
-
-                    <div>
-                      <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white group-hover:text-orange-400 transition-colors">
-                        {study.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-gray-400 mt-2 leading-relaxed">
-                        {study.subtitle}
-                      </p>
-                    </div>
-
-                    {/* Quick Metric Highlights */}
-                    <div className="grid grid-cols-2 gap-3 pt-2">
-                      {study.metrics.slice(0, 2).map((m, mIdx) => (
-                        <div key={mIdx} className="bg-white/5 p-3 rounded-xl border border-white/5">
-                          <p className="text-[10px] text-gray-400 font-mono uppercase">{m.label}</p>
-                          <p className="text-xl font-black text-white mt-0.5">{m.value}</p>
-                          {m.change && <p className="text-[10px] text-emerald-400 font-bold">{m.change}</p>}
+                  <div>
+                    {/* Visual Preview Image */}
+                    {study.image && (
+                      <div className="relative h-52 w-full overflow-hidden border-b border-white/10 bg-black/50">
+                        <img 
+                          src={study.image} 
+                          alt={study.title} 
+                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#11131e] via-transparent to-transparent opacity-80" />
+                        <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                          <span className="text-[11px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-orange-400 border border-white/15">
+                            {study.category}
+                          </span>
                         </div>
-                      ))}
-                    </div>
+                        <div className="absolute bottom-3 right-4 z-10 text-xs font-mono text-gray-300 bg-black/70 backdrop-blur-sm px-2.5 py-0.5 rounded border border-white/10">
+                          {study.timeline}
+                        </div>
+                      </div>
+                    )}
 
-                    {/* Tools Tags */}
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {study.tools.map((tool, tIdx) => (
-                        <span key={tIdx} className="text-[10px] font-medium bg-black/40 text-gray-300 px-2 py-0.5 rounded border border-white/10">
-                          {tool}
-                        </span>
-                      ))}
+                    <div className="p-7 space-y-5">
+                      <div>
+                        <h3 className="text-2xl font-black uppercase tracking-tight text-white group-hover:text-orange-400 transition-colors">
+                          {study.title}
+                        </h3>
+                        <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                          {study.subtitle}
+                        </p>
+                      </div>
+
+                      {/* Behind The Scenes Quote */}
+                      {study.analystNotes && (
+                        <div className="bg-white/5 border-l-2 border-orange-400 p-3 rounded-r-xl text-xs text-gray-300 italic line-clamp-2">
+                          "{study.analystNotes}"
+                        </div>
+                      )}
+
+                      {/* Quick Metric Highlights */}
+                      <div className="grid grid-cols-2 gap-3">
+                        {study.metrics.slice(0, 2).map((m, mIdx) => (
+                          <div key={mIdx} className="bg-black/40 p-3 rounded-xl border border-white/5">
+                            <p className="text-[10px] text-gray-400 font-mono uppercase">{m.label}</p>
+                            <p className="text-xl font-black text-white mt-0.5">{m.value}</p>
+                            {m.change && <p className="text-[10px] text-emerald-400 font-bold">{m.change}</p>}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Tools Tags */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {study.tools.map((tool, tIdx) => (
+                          <span key={tIdx} className="text-[10px] font-medium bg-black/40 text-gray-300 px-2 py-0.5 rounded border border-white/10">
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
@@ -508,19 +570,28 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
           </div>
         </section>
 
-        {/* 6-Step Data Analytics Methodology */}
+        {/* 6-Step Data Analytics Methodology with Architecture Visual */}
         <section className="py-16 md:py-24 px-6 md:px-12 bg-[#090b12] border-b border-white/10">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
-                Analytical Framework
+                Analytical Framework & Pipeline
               </span>
               <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
-                How I Solve Data Problems
+                End-To-End Data Architecture Flow
               </h2>
               <p className="text-sm sm:text-base text-gray-400">
                 A structured, disciplined methodology ensuring every analysis produces dependable, verifiable, and actionable business intelligence.
               </p>
+            </div>
+
+            {/* Architecture Visual Diagram */}
+            <div className="mb-14 rounded-2xl overflow-hidden border border-white/15 bg-black/60 shadow-2xl">
+              <img 
+                src="/case-studies/pipeline-architecture.jpg" 
+                alt="Data Pipeline Flow Diagram" 
+                className="w-full max-h-[440px] object-cover object-center" 
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -604,7 +675,7 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
             Data Case Studies & Deep-Dives
           </h1>
           <p className="text-base text-gray-300 leading-relaxed">
-            Each case study outlines the full lifecycle: business context, raw data hygiene, SQL star-schema modeling, Python exploratory data analysis, and Power BI executive scorecards.
+            Each case study outlines the full lifecycle: business context, raw data hygiene, SQL star-schema modeling, Python exploratory data analysis, and Power BI executive scorecards with verified deliverables.
           </p>
         </div>
 
@@ -629,23 +700,46 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         </div>
 
         {/* Case Study Cards */}
-        <div className="space-y-12 mb-20">
+        <div className="space-y-16 mb-20">
           {filteredStudies.map((study) => (
             <div
               key={study.id}
               className="bg-[#11131c] rounded-3xl border border-white/10 overflow-hidden shadow-2xl hover:border-orange-500/40 transition-all duration-300"
             >
-              <div className="p-6 sm:p-10">
-                {/* Meta Header */}
-                <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">
+              {/* Image banner */}
+              {study.image && (
+                <div className="relative h-64 sm:h-80 w-full overflow-hidden border-b border-white/10 bg-black/60 group">
+                  <img 
+                    src={study.image} 
+                    alt={study.title} 
+                    className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#11131c] via-black/30 to-transparent opacity-90" />
+                  <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-orange-400 border border-white/15">
                       {study.category}
                     </span>
-                    <span className="text-xs text-gray-400 font-mono">
-                      {study.timeline}
-                    </span>
                   </div>
+                  <div className="absolute bottom-4 left-6 right-6 z-10 flex justify-between items-end">
+                    <p className="text-xs font-mono text-gray-300 bg-black/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10">
+                      Deliverable: Production Power BI & Python Solution
+                    </p>
+                    <button
+                      onClick={() => onSelectCaseStudy(study)}
+                      className="px-3.5 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg shadow-orange-500/20"
+                    >
+                      <Maximize2 className="w-3.5 h-3.5" /> Enlarge
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <div className="p-6 sm:p-10">
+                {/* Meta Header */}
+                <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+                  <span className="text-xs text-gray-400 font-mono">
+                    Timeline: {study.timeline}
+                  </span>
                   <span className="text-xs text-gray-400 font-medium">
                     Role: {study.role}
                   </span>
@@ -658,6 +752,16 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 <p className="text-sm sm:text-base text-gray-300 mb-6 font-medium">
                   {study.subtitle}
                 </p>
+
+                {/* Behind the scenes personal note */}
+                {study.analystNotes && (
+                  <div className="bg-gradient-to-r from-orange-950/20 to-transparent border-l-3 border-orange-500 p-4 rounded-r-xl mb-6 text-xs sm:text-sm text-gray-300 italic">
+                    <span className="text-orange-400 font-bold block not-italic uppercase font-mono text-[11px] mb-1">
+                      Analyst Reflection:
+                    </span>
+                    "{study.analystNotes}"
+                  </div>
+                )}
 
                 {/* Metrics Banner */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-black/40 p-4 rounded-2xl border border-white/5 mb-6">
@@ -857,7 +961,7 @@ const Skills = () => {
   );
 };
 
-// 4. ABOUT & LEADERSHIP PAGE
+// 4. ABOUT & LEADERSHIP PAGE - VIBRANT COLOR PHOTO & HUMAN NARRATIVE
 const About = () => {
   return (
     <PageTransition>
@@ -875,25 +979,38 @@ const About = () => {
           </p>
         </div>
 
-        {/* Main Grid: Story & Photo */}
+        {/* Main Grid: Story & Vibrant Colorful Portrait */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
-          {/* Photo Frame */}
+          
+          {/* Colorful Vibrant Photo Card */}
           <div className="lg:col-span-5 relative group">
-            <div className="absolute inset-0 bg-[#eb5939] translate-x-3 translate-y-3 rounded-3xl transition-transform group-hover:translate-x-2 group-hover:translate-y-2 opacity-80" />
-            <div className="relative z-10 rounded-3xl overflow-hidden border-2 border-white/20 bg-black aspect-[4/5] shadow-2xl">
+            {/* Colorful Ambient Glow Layer */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-orange-500 via-amber-500 to-teal-500 rounded-3xl blur-xl opacity-60 group-hover:opacity-85 transition-opacity duration-700" />
+            
+            <div className="relative z-10 rounded-3xl overflow-hidden border-2 border-white/20 bg-[#12141e] shadow-2xl">
+              {/* True Full-Color Image (No Grayscale!) */}
               <img
                 src="/about-pic.jpg"
-                alt="Anmol Kumar"
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                alt="Anmol Kumar - Full Color Portrait"
+                className="w-full aspect-[4/5] object-cover object-center group-hover:scale-105 transition-all duration-700"
               />
-              <div className="absolute bottom-4 left-4 right-4 bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 text-xs text-white">
-                <p className="font-bold">Anmol Kumar</p>
-                <p className="text-[10px] text-gray-400">Chandigarh University • B.E. Computer Science</p>
+              
+              {/* Vibrant Badge Overlay */}
+              <div className="absolute bottom-4 left-4 right-4 bg-gradient-to-r from-black/90 to-[#12141e]/90 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-xl">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-bold text-sm text-white">Anmol Kumar</p>
+                    <p className="text-[11px] text-orange-400 font-mono">Chandigarh University CSE (2022–2026)</p>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center">
+                    <FileCheck2 className="w-4 h-4" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Biography Text */}
+          {/* Biography Text & Human Context */}
           <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
             <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-snug">
               Passionate about turning raw data into meaningful business intelligence.
@@ -902,7 +1019,7 @@ const About = () => {
               {PERSONAL_INFO.bio}
             </p>
             <p>
-              Throughout my degree at Chandigarh University (CGPA 7.66/10), I cultivated strong foundations in relational database management, data structures, and statistical reasoning. I quickly realized that the greatest superpower in modern organizations is the ability to turn disparate, unstandardized transactional logs into clear, actionable stories that non-technical leaders can act on immediately.
+              Throughout my degree at Chandigarh University (<span className="text-white font-semibold">CGPA 7.66 / 10</span>), I cultivated strong foundations in relational database management, data structures, and statistical reasoning. I quickly realized that the greatest superpower in modern organizations is the ability to turn disparate, unstandardized transactional logs into clear, actionable stories that non-technical leaders can act on immediately.
             </p>
             <p>
               In addition to traditional analytics, I have actively mastered AI-assisted data analysis and prompt engineering to accelerate report compilation, automate data anomalies summarization, and craft executive briefings in minutes rather than days.
