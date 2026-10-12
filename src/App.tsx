@@ -41,6 +41,7 @@ import {
 
 import { CaseStudyDetailModal } from './components/CaseStudyDetailModal';
 import { LinkedinIcon, GithubIcon } from './components/Icons';
+import { FishOceanBackground } from './components/FishOceanBackground';
 
 // --- Shared UI Elements ---
 
@@ -1494,7 +1495,8 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#0b0f19] text-slate-100 font-sans selection:bg-orange-500 selection:text-white flex flex-col relative">
+      <div className="min-h-screen bg-[#070b14] text-slate-100 font-sans selection:bg-orange-500 selection:text-white flex flex-col relative overflow-hidden">
+        <FishOceanBackground />
         <GridBackground />
         <NavBar />
         
