@@ -330,23 +330,23 @@ export const FishOceanBackground: React.FC = () => {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Deep Oceanic Ambient Glow
+      // Crystal Oceanic Sunlit Glow (Optimized for Light Mode)
       const oceanGrad = ctx.createRadialGradient(
         width * 0.65,
         height * 0.35,
-        100,
+        120,
         width * 0.5,
         height * 0.5,
         width * 0.85
       );
-      oceanGrad.addColorStop(0, 'rgba(12, 42, 78, 0.4)');
-      oceanGrad.addColorStop(0.5, 'rgba(6, 22, 44, 0.22)');
-      oceanGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      oceanGrad.addColorStop(0, 'rgba(186, 230, 253, 0.45)');  // soft sky blue
+      oceanGrad.addColorStop(0.5, 'rgba(224, 242, 254, 0.22)');
+      oceanGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
       ctx.fillStyle = oceanGrad;
       ctx.fillRect(0, 0, width, height);
 
-      // Soft Floating Bubbles
+      // Translucent Sparkling Bubbles (Light Mode)
       bubbles.forEach((b) => {
         b.y -= b.speedY;
         b.phase += b.wobbleSpeed;
@@ -359,12 +359,12 @@ export const FishOceanBackground: React.FC = () => {
 
         ctx.beginPath();
         ctx.arc(wobbleX, b.y, b.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(186, 230, 253, ${b.opacity})`;
+        ctx.fillStyle = `rgba(14, 165, 233, ${b.opacity * 0.65})`;
         ctx.fill();
 
         ctx.beginPath();
-        ctx.arc(wobbleX - b.radius * 0.3, b.y - b.radius * 0.3, b.radius * 0.3, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+        ctx.arc(wobbleX - b.radius * 0.3, b.y - b.radius * 0.3, b.radius * 0.35, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
         ctx.fill();
       });
 

@@ -39,27 +39,27 @@ export const SalesDashboardVisualizer = () => {
   const current = regionalData[selectedRegion];
 
   return (
-    <div className="bg-[#12141c] text-white rounded-2xl border border-white/10 shadow-2xl overflow-hidden font-sans">
+    <div className="bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-lg overflow-hidden font-sans">
       {/* Dashboard Top Header Bar */}
-      <div className="bg-[#1a1d28] px-5 py-4 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-slate-50/90 px-5 py-4 border-b border-slate-200/90 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-orange-400">
+          <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-600">
             <BarChart3 className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="font-bold text-sm tracking-tight flex items-center gap-2">
+            <h4 className="font-bold text-sm tracking-tight flex items-center gap-2 text-slate-900">
               AI Sales Executive Intelligence
-              <span className="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30 flex items-center gap-1 font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping"></span> Live Power BI Model
+              <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1 font-mono font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Live Power BI Model
               </span>
             </h4>
-            <p className="text-[11px] text-gray-400">SQL Data Mart • Star Schema • Auto-Refreshed via Python ETL</p>
+            <p className="text-[11px] text-slate-500">SQL Data Mart • Star Schema • Auto-Refreshed via Python ETL</p>
           </div>
         </div>
 
         {/* Filters */}
         <div className="flex items-center gap-2">
-          <span className="text-xs text-gray-400 flex items-center gap-1 mr-1">
+          <span className="text-xs text-slate-500 flex items-center gap-1 mr-1">
             <SlidersHorizontal className="w-3 h-3" /> Region:
           </span>
           {(['All', 'North America', 'Europe', 'Asia-Pacific'] as const).map((r) => (
@@ -68,8 +68,8 @@ export const SalesDashboardVisualizer = () => {
               onClick={() => setSelectedRegion(r)}
               className={`text-xs px-2.5 py-1 rounded-md transition-all font-medium ${
                 selectedRegion === r
-                  ? 'bg-orange-500 text-white font-semibold shadow-md shadow-orange-500/20'
-                  : 'bg-white/5 hover:bg-white/10 text-gray-300'
+                  ? 'bg-orange-500 text-white font-semibold shadow-sm shadow-orange-500/20'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200/60'
               }`}
             >
               {r}
@@ -79,66 +79,66 @@ export const SalesDashboardVisualizer = () => {
       </div>
 
       {/* KPI Cards Strip */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-5 bg-[#141722]/60 border-b border-white/5">
-        <div className="bg-white/5 p-3.5 rounded-xl border border-white/5">
-          <p className="text-[11px] text-gray-400 uppercase tracking-wider font-semibold">Net Billed Revenue</p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-5 bg-slate-50/50 border-b border-slate-200/80">
+        <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs">
+          <p className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Net Billed Revenue</p>
           <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-xl md:text-2xl font-black tracking-tight">{current.revenue}</span>
-            <span className="text-xs text-emerald-400 font-bold flex items-center">
+            <span className="text-xl md:text-2xl font-black tracking-tight text-slate-900">{current.revenue}</span>
+            <span className="text-xs text-emerald-600 font-bold flex items-center">
               <ArrowUpRight className="w-3 h-3" /> {current.growth}
             </span>
           </div>
-          <p className="text-[10px] text-gray-500 mt-0.5">vs. Prior Year Baseline</p>
+          <p className="text-[10px] text-slate-400 mt-0.5">vs. Prior Year Baseline</p>
         </div>
 
-        <div className="bg-white/5 p-3.5 rounded-xl border border-white/5">
-          <p className="text-[11px] text-gray-400 uppercase tracking-wider font-semibold">Gross Profit Margin</p>
+        <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs">
+          <p className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Gross Profit Margin</p>
           <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-xl md:text-2xl font-black tracking-tight">{current.margin}</span>
-            <span className="text-xs text-emerald-400 font-bold">+2.8% YoY</span>
+            <span className="text-xl md:text-2xl font-black tracking-tight text-slate-900">{current.margin}</span>
+            <span className="text-xs text-emerald-600 font-bold">+2.8% YoY</span>
           </div>
-          <p className="text-[10px] text-gray-500 mt-0.5">DAX Margin Calculation</p>
+          <p className="text-[10px] text-slate-400 mt-0.5">DAX Margin Calculation</p>
         </div>
 
-        <div className="bg-white/5 p-3.5 rounded-xl border border-white/5">
-          <p className="text-[11px] text-gray-400 uppercase tracking-wider font-semibold">Orders Processed</p>
+        <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs">
+          <p className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Orders Processed</p>
           <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-xl md:text-2xl font-black tracking-tight">{current.orders}</span>
-            <span className="text-xs text-emerald-400 font-bold">+12%</span>
+            <span className="text-xl md:text-2xl font-black tracking-tight text-slate-900">{current.orders}</span>
+            <span className="text-xs text-emerald-600 font-bold">+12%</span>
           </div>
-          <p className="text-[10px] text-gray-500 mt-0.5">Distinct Sales Transactions</p>
+          <p className="text-[10px] text-slate-400 mt-0.5">Distinct Sales Transactions</p>
         </div>
 
-        <div className="bg-white/5 p-3.5 rounded-xl border border-white/5">
-          <p className="text-[11px] text-gray-400 uppercase tracking-wider font-semibold">Lead Product Tier</p>
+        <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs">
+          <p className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Lead Product Tier</p>
           <div className="flex items-baseline gap-2 mt-1">
-            <span className="text-base md:text-lg font-bold text-orange-400 truncate">{current.topCategory}</span>
+            <span className="text-base md:text-lg font-bold text-orange-600 truncate">{current.topCategory}</span>
           </div>
-          <p className="text-[10px] text-gray-500 mt-0.5">64% Contribution Margin</p>
+          <p className="text-[10px] text-slate-400 mt-0.5">64% Contribution Margin</p>
         </div>
       </div>
 
       {/* Main Chart Area */}
-      <div className="p-5">
+      <div className="p-5 bg-white">
         <div className="flex justify-between items-center mb-4">
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-gray-300">
+            <h5 className="text-xs font-bold uppercase tracking-wider text-slate-700">
               Monthly Revenue vs Target Pace (FY 2026)
             </h5>
-            <p className="text-[11px] text-gray-400">Bars represent actual net revenue; dashed line represents sales quota</p>
+            <p className="text-[11px] text-slate-500">Bars represent actual net revenue; dashed line represents sales quota</p>
           </div>
-          <div className="flex items-center gap-4 text-[11px] text-gray-400">
+          <div className="flex items-center gap-4 text-[11px] text-slate-500">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-sm bg-orange-500"></span> Actual Revenue
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-1 bg-white/40"></span> Quota Baseline
+              <span className="w-2.5 h-1 bg-slate-400"></span> Quota Baseline
             </span>
           </div>
         </div>
 
         {/* Visual Bar Chart */}
-        <div className="h-44 w-full flex items-end gap-2 sm:gap-3 pt-6 pb-2 border-b border-white/10 px-1">
+        <div className="h-44 w-full flex items-end gap-2 sm:gap-3 pt-6 pb-2 border-b border-slate-200 px-1">
           {chartData.map((d, i) => {
             const heightPct = (d.val / 130) * 100;
             const targetPct = (d.target / 130) * 100;
@@ -146,14 +146,14 @@ export const SalesDashboardVisualizer = () => {
             return (
               <div key={i} className="flex-1 flex flex-col items-center h-full justify-end group relative">
                 {/* Tooltip on hover */}
-                <div className="absolute -top-12 bg-black/90 text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20 border border-white/20 shadow-xl">
+                <div className="absolute -top-12 bg-slate-900 text-white text-[10px] px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20 shadow-lg">
                   <div className="font-bold">{d.month} 2026: {d.rev}</div>
-                  <div className="text-gray-400">Target: {Math.round((d.target / d.val) * 100)}% met</div>
+                  <div className="text-slate-300">Target: {Math.round((d.target / d.val) * 100)}% met</div>
                 </div>
 
                 {/* Target line tick */}
                 <div 
-                  className="absolute w-full border-t border-dashed border-white/50 z-10 pointer-events-none" 
+                  className="absolute w-full border-t border-dashed border-slate-300 z-10 pointer-events-none" 
                   style={{ bottom: `${targetPct}%` }}
                 />
 
@@ -161,13 +161,13 @@ export const SalesDashboardVisualizer = () => {
                 <div 
                   className={`w-full rounded-t-md transition-all duration-500 ${
                     isBeating 
-                      ? 'bg-gradient-to-t from-orange-600 to-amber-400 group-hover:from-orange-500 group-hover:to-amber-300' 
-                      : 'bg-gradient-to-t from-gray-600 to-gray-400'
+                      ? 'bg-gradient-to-t from-orange-500 to-amber-400 group-hover:from-orange-600 group-hover:to-amber-500' 
+                      : 'bg-gradient-to-t from-slate-400 to-slate-300'
                   }`}
                   style={{ height: `${heightPct}%` }}
                 />
 
-                <span className="text-[10px] text-gray-400 mt-2 font-mono">{d.month}</span>
+                <span className="text-[10px] text-slate-500 mt-2 font-mono">{d.month}</span>
               </div>
             );
           })}
@@ -175,16 +175,16 @@ export const SalesDashboardVisualizer = () => {
       </div>
 
       {/* AI Executive Insight Callout Footer */}
-      <div className="bg-[#171a26] p-4 border-t border-white/10 flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-indigo-500/20 text-indigo-400 shrink-0">
+      <div className="bg-indigo-50/70 p-4 border-t border-indigo-100 flex items-start gap-3">
+        <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-600 shrink-0">
           <Sparkles className="w-4 h-4" />
         </div>
         <div className="text-xs">
           <div className="flex items-center gap-2 mb-1">
-            <span className="font-bold text-indigo-300">AI-Generated Executive Summary Memo</span>
-            <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-1.5 py-0.2 rounded font-mono">Automated Prompt</span>
+            <span className="font-bold text-indigo-900">AI-Generated Executive Summary Memo</span>
+            <span className="text-[10px] bg-indigo-100 text-indigo-700 px-1.5 py-0.2 rounded font-mono font-medium">Automated Prompt</span>
           </div>
-          <p className="text-gray-300 leading-relaxed text-[11px]">
+          <p className="text-indigo-950/80 leading-relaxed text-[11px]">
             {selectedRegion === 'All' && 
               "\"Q4 achieved 118% quota fulfillment driven by Enterprise tier upgrades. Europe and North America cross-selling reduced customer acquisition payback to 4.2 months. Recommended Action: Scale Q1 sales headcount toward EMEA cloud renewals.\""
             }
@@ -226,21 +226,21 @@ export const HRWorkforceVisualizer = () => {
   ];
 
   return (
-    <div className="bg-[#12141c] text-white rounded-2xl border border-white/10 shadow-2xl overflow-hidden font-sans">
+    <div className="bg-white text-slate-800 rounded-2xl border border-slate-200/90 shadow-lg overflow-hidden font-sans">
       {/* Header */}
-      <div className="bg-[#1a1d28] px-5 py-4 border-b border-white/10 flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-slate-50/90 px-5 py-4 border-b border-slate-200/90 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-teal-500/20 border border-teal-500/40 flex items-center justify-center text-teal-400">
+          <div className="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-600">
             <Users className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="font-bold text-sm tracking-tight flex items-center gap-2">
+            <h4 className="font-bold text-sm tracking-tight flex items-center gap-2 text-slate-900">
               HR Workforce & Talent Retention Analytics
-              <span className="text-[10px] bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded-full border border-teal-500/30 font-mono">
+              <span className="text-[10px] bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full border border-teal-200 font-mono font-semibold">
                 Power BI • Python EDA
               </span>
             </h4>
-            <p className="text-[11px] text-gray-400">People Analytics Suite • Flight-Risk Early Warning Engine</p>
+            <p className="text-[11px] text-slate-500">People Analytics Suite • Flight-Risk Early Warning Engine</p>
           </div>
         </div>
 
@@ -252,8 +252,8 @@ export const HRWorkforceVisualizer = () => {
               onClick={() => setActiveDept(dept)}
               className={`text-xs px-2.5 py-1 rounded-md transition-all font-medium ${
                 activeDept === dept
-                  ? 'bg-teal-500 text-white font-semibold shadow-md shadow-teal-500/20'
-                  : 'bg-white/5 hover:bg-white/10 text-gray-300'
+                  ? 'bg-teal-600 text-white font-semibold shadow-sm'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200/60'
               }`}
             >
               {dept}
@@ -263,44 +263,44 @@ export const HRWorkforceVisualizer = () => {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-5 bg-[#141722]/60 border-b border-white/5">
-        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Active Headcount</p>
-          <p className="text-xl md:text-2xl font-black mt-1 text-white">{curr.headcount}</p>
-          <p className="text-[10px] text-gray-500">Tracked in RDBMS</p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 p-5 bg-slate-50/50 border-b border-slate-200/80">
+        <div className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-xs">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Active Headcount</p>
+          <p className="text-xl md:text-2xl font-black mt-1 text-slate-900">{curr.headcount}</p>
+          <p className="text-[10px] text-slate-400">Tracked in RDBMS</p>
         </div>
-        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Annual Attrition</p>
-          <p className="text-xl md:text-2xl font-black mt-1 text-amber-400">{curr.attrition}</p>
-          <p className="text-[10px] text-emerald-400">-3.2% vs prior benchmark</p>
+        <div className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-xs">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Annual Attrition</p>
+          <p className="text-xl md:text-2xl font-black mt-1 text-amber-600">{curr.attrition}</p>
+          <p className="text-[10px] text-emerald-600 font-medium">-3.2% vs prior benchmark</p>
         </div>
-        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Average Tenure</p>
-          <p className="text-xl md:text-2xl font-black mt-1 text-white">{curr.avgTenure}</p>
-          <p className="text-[10px] text-gray-500">Cohort distribution</p>
+        <div className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-xs">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Average Tenure</p>
+          <p className="text-xl md:text-2xl font-black mt-1 text-slate-900">{curr.avgTenure}</p>
+          <p className="text-[10px] text-slate-400">Cohort distribution</p>
         </div>
-        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Critical Flight Risk</p>
-          <p className="text-xl md:text-2xl font-black mt-1 text-red-400">{curr.flightRisk}</p>
-          <p className="text-[10px] text-gray-400">Algorithmic Alert</p>
+        <div className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-xs">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Critical Flight Risk</p>
+          <p className="text-xl md:text-2xl font-black mt-1 text-red-600">{curr.flightRisk}</p>
+          <p className="text-[10px] text-slate-400">Algorithmic Alert</p>
         </div>
       </div>
 
       {/* Drill-down Analytics View */}
-      <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6 bg-white">
         <div>
-          <h5 className="text-xs font-bold uppercase tracking-wider text-gray-300 mb-3 flex items-center justify-between">
+          <h5 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3 flex items-center justify-between">
             <span>Primary Root Drivers of Voluntary Turnover</span>
-            <span className="text-[10px] text-teal-400 font-mono">Python Feature Importance</span>
+            <span className="text-[10px] text-teal-700 font-mono font-medium">Python Feature Importance</span>
           </h5>
           <div className="space-y-3">
             {attritionFactors.map((f, i) => (
               <div key={i} className="text-xs">
-                <div className="flex justify-between text-gray-300 mb-1">
+                <div className="flex justify-between text-slate-700 mb-1">
                   <span>{f.factor}</span>
-                  <span className="font-mono font-bold">{f.impact}% weight</span>
+                  <span className="font-mono font-bold text-slate-900">{f.impact}% weight</span>
                 </div>
-                <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                   <div className={`h-full rounded-full ${f.color}`} style={{ width: `${f.impact * 2}%` }} />
                 </div>
               </div>
@@ -308,29 +308,29 @@ export const HRWorkforceVisualizer = () => {
           </div>
         </div>
 
-        <div className="bg-white/5 p-4 rounded-xl border border-white/5 flex flex-col justify-between">
+        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold text-gray-300 uppercase tracking-wider">Hiring Pipeline Funnel Velocity</span>
-              <span className="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-mono">-17 Days Gained</span>
+              <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">Hiring Pipeline Funnel Velocity</span>
+              <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-mono font-medium">-17 Days Gained</span>
             </div>
-            <p className="text-[11px] text-gray-400 mb-3 leading-relaxed">
+            <p className="text-[11px] text-slate-500 mb-3 leading-relaxed">
               Pinpointed stage drop-offs between technical assessment and final offer generation.
             </p>
             <div className="space-y-1.5 text-[11px]">
-              <div className="flex justify-between py-1 border-b border-white/5">
-                <span className="text-gray-400">Application to First Screen:</span>
-                <span className="font-semibold text-white">4 Days (was 8)</span>
+              <div className="flex justify-between py-1 border-b border-slate-200/60">
+                <span className="text-slate-500">Application to First Screen:</span>
+                <span className="font-semibold text-slate-800">4 Days (was 8)</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-white/5">
-                <span className="text-gray-400">Tech Assessment Review:</span>
-                <span className="font-semibold text-white">6 Days (was 14)</span>
+              <div className="flex justify-between py-1 border-b border-slate-200/60">
+                <span className="text-slate-500">Tech Assessment Review:</span>
+                <span className="font-semibold text-slate-800">6 Days (was 14)</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-white/5">
-                <span className="text-gray-400">Offer to Acceptance:</span>
-                <span className="font-semibold text-white">5 Days (was 9)</span>
+              <div className="flex justify-between py-1 border-b border-slate-200/60">
+                <span className="text-slate-500">Offer to Acceptance:</span>
+                <span className="font-semibold text-slate-800">5 Days (was 9)</span>
               </div>
-              <div className="flex justify-between py-1 font-bold text-teal-300">
+              <div className="flex justify-between py-1 font-bold text-teal-700">
                 <span>Total Cycle Time:</span>
                 <span>28 Days (Industry avg: 45d)</span>
               </div>
@@ -505,24 +505,24 @@ RETURN
   };
 
   return (
-    <div className="bg-[#0e1017] rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+    <div className="bg-white rounded-2xl border border-slate-200/90 shadow-lg overflow-hidden">
       {/* Code Viewer Nav */}
-      <div className="bg-[#161922] px-4 py-3 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-slate-50 px-4 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5 mr-2">
-            <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
-            <span className="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-            <span className="w-3 h-3 rounded-full bg-green-500/80"></span>
+            <span className="w-3 h-3 rounded-full bg-red-400"></span>
+            <span className="w-3 h-3 rounded-full bg-amber-400"></span>
+            <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
           </div>
-          <div className="flex items-center gap-1 bg-black/40 p-1 rounded-lg">
+          <div className="flex items-center gap-1 bg-slate-200/70 p-1 rounded-lg">
             {(['sql', 'python', 'dax', 'excel'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-3 py-1 text-xs rounded-md font-mono uppercase font-semibold transition-all ${
                   activeTab === tab
-                    ? 'bg-orange-500 text-white shadow-sm'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    ? 'bg-orange-500 text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
                 }`}
               >
                 {tab}
@@ -532,30 +532,30 @@ RETURN
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-[11px] text-gray-400 font-mono hidden sm:inline">
+          <span className="text-[11px] text-slate-500 font-mono hidden sm:inline">
             {snippets[activeTab].tech}
           </span>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/5 hover:bg-white/10 text-gray-300 text-xs border border-white/10 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-white hover:bg-slate-100 text-slate-700 text-xs border border-slate-200 shadow-xs transition-colors"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copied ? 'Copied!' : 'Copy Code'}</span>
           </button>
         </div>
       </div>
 
       {/* Code Title Bar */}
-      <div className="px-5 py-2.5 bg-[#12141c] border-b border-white/5 flex items-center justify-between text-xs text-gray-400">
-        <span className="font-semibold text-gray-300 flex items-center gap-2">
-          <Code2 className="w-3.5 h-3.5 text-orange-400" />
+      <div className="px-5 py-2.5 bg-slate-100/70 border-b border-slate-200 flex items-center justify-between text-xs text-slate-600">
+        <span className="font-semibold text-slate-800 flex items-center gap-2">
+          <Code2 className="w-3.5 h-3.5 text-orange-500" />
           {snippets[activeTab].title}
         </span>
-        <span className="font-mono text-[10px] text-gray-500">UTF-8 • Production Ready</span>
+        <span className="font-mono text-[10px] text-slate-500">UTF-8 • Production Ready</span>
       </div>
 
-      {/* Syntax Box */}
-      <div className="p-5 overflow-x-auto max-h-[380px] bg-[#090b10] text-gray-200 font-mono text-xs leading-relaxed selection:bg-orange-500/40">
+      {/* Syntax Box - Dark IDE Window inside Light Frame for best code readability */}
+      <div className="p-5 overflow-x-auto max-h-[380px] bg-[#0c1017] text-slate-200 font-mono text-xs leading-relaxed selection:bg-orange-500/40 custom-scrollbar">
         <pre><code>{snippets[activeTab].code}</code></pre>
       </div>
     </div>

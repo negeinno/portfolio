@@ -47,18 +47,18 @@ import { FishOceanBackground } from './components/FishOceanBackground';
 
 const GridBackground = () => (
   <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    {/* Subtle Data Mesh */}
+    {/* Subtle Data Mesh for Light Theme */}
     <div 
-      className="absolute inset-0 opacity-[0.04]"
+      className="absolute inset-0 opacity-[0.4]"
       style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, #94a3b8 1px, transparent 0)`,
+        backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
         backgroundSize: '32px 32px'
       }}
     />
-    {/* Rich Atmospheric Glows for Modern UI Depth */}
-    <div className="absolute -top-32 left-1/4 w-[600px] h-[500px] bg-gradient-to-br from-orange-500/15 to-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
-    <div className="absolute top-1/3 -right-20 w-[550px] h-[550px] bg-gradient-to-bl from-blue-600/12 to-indigo-600/10 rounded-full blur-[150px] pointer-events-none" />
-    <div className="absolute bottom-10 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-600/10 to-teal-600/10 rounded-full blur-[140px] pointer-events-none" />
+    {/* Fresh Atmospheric Sunlit Glows for Depth */}
+    <div className="absolute -top-32 left-1/4 w-[600px] h-[500px] bg-gradient-to-br from-orange-400/10 to-amber-300/10 rounded-full blur-[140px] pointer-events-none" />
+    <div className="absolute top-1/3 -right-20 w-[550px] h-[550px] bg-gradient-to-bl from-sky-400/12 to-blue-300/10 rounded-full blur-[150px] pointer-events-none" />
+    <div className="absolute bottom-10 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-emerald-400/10 to-teal-300/10 rounded-full blur-[140px] pointer-events-none" />
   </div>
 );
 
@@ -76,17 +76,17 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 backdrop-blur-2xl bg-[#0b0f19]/85 border-b border-slate-800/80 px-6 md:px-12 py-3.5 text-slate-100 transition-all shadow-lg shadow-black/20">
+      <nav className="sticky top-0 z-50 backdrop-blur-2xl bg-white/90 border-b border-slate-200/90 px-6 md:px-12 py-3.5 text-slate-800 transition-all shadow-xs">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3 group" onClick={() => setIsOpen(false)}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center font-black text-white text-base shadow-md shadow-orange-500/30 group-hover:scale-105 transition-transform border border-orange-400/30">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center font-black text-white text-base shadow-sm shadow-orange-500/30 group-hover:scale-105 transition-transform border border-orange-400/40">
               AK
             </div>
             <div>
-              <span className="text-base font-bold tracking-tight block leading-tight text-white group-hover:text-orange-400 transition-colors">
+              <span className="text-base font-bold tracking-tight block leading-tight text-slate-900 group-hover:text-orange-600 transition-colors">
                 Anmol Kumar
               </span>
-              <span className="text-[11px] text-orange-400 font-mono tracking-wider uppercase block font-semibold">
+              <span className="text-[11px] text-orange-600 font-mono tracking-wider uppercase block font-semibold">
                 Data Analyst • BI
               </span>
             </div>
@@ -101,7 +101,7 @@ const NavBar = () => {
                   key={link.name}
                   to={link.path}
                   className={`transition-colors py-1.5 relative ${
-                    isActive ? 'text-white font-semibold' : 'text-slate-400 hover:text-white'
+                    isActive ? 'text-orange-600 font-bold' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   {link.name}
@@ -122,13 +122,13 @@ const NavBar = () => {
               href={PERSONAL_INFO.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700/80 transition-all hover:text-white"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 shadow-xs transition-all hover:text-slate-900"
             >
-              <Download className="w-3.5 h-3.5 text-orange-400" /> Resume
+              <Download className="w-3.5 h-3.5 text-orange-500" /> Resume PDF
             </a>
             <Link
               to="/contact"
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-md shadow-orange-500/25 transition-all font-semibold"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-sm shadow-orange-500/25 transition-all font-semibold"
             >
               Hire Me
             </Link>
@@ -138,7 +138,7 @@ const NavBar = () => {
           <div className="md:hidden flex items-center">
             <button 
               onClick={() => setIsOpen(!isOpen)} 
-              className="p-2 text-slate-300 hover:text-white focus:outline-none rounded-lg bg-slate-800/60 border border-slate-700/60"
+              className="p-2 text-slate-700 hover:text-slate-900 focus:outline-none rounded-lg bg-slate-100 border border-slate-200"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -158,14 +158,14 @@ const NavBar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-[#0b0f19]/98 backdrop-blur-2xl flex flex-col justify-center items-center px-6 gap-6 md:hidden"
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl flex flex-col justify-center items-center px-6 gap-6 md:hidden"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className="text-2xl font-bold uppercase tracking-tight text-white hover:text-orange-400 transition-colors"
+                className="text-2xl font-bold uppercase tracking-tight text-slate-900 hover:text-orange-600 transition-colors"
               >
                 {link.name}
               </Link>
@@ -175,14 +175,14 @@ const NavBar = () => {
                 href={PERSONAL_INFO.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-slate-800 text-white border border-slate-700 flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center gap-2 shadow-xs"
               >
-                <Download className="w-4 h-4 text-orange-400" /> Download Resume PDF
+                <Download className="w-4 h-4 text-orange-500" /> Download Resume PDF
               </a>
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-orange-500 text-white flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-xl text-center text-xs font-bold uppercase tracking-wider bg-orange-500 text-white flex items-center justify-center gap-2 shadow-xs"
               >
                 Get in Touch
               </Link>
@@ -195,41 +195,41 @@ const NavBar = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-[#080c14] text-slate-300 border-t border-slate-800/80 py-12 px-6 md:px-12 relative z-10">
+  <footer className="bg-slate-100 text-slate-600 border-t border-slate-200 py-12 px-6 md:px-12 relative z-10">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-xs font-black text-white shadow-sm">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-xs font-black text-white shadow-xs">
             AK
           </div>
-          <span className="font-bold text-base text-white">Anmol Kumar</span>
-          <span className="text-slate-600">•</span>
-          <span className="text-xs text-orange-400 font-mono font-semibold">Data Analyst & BI Specialist</span>
+          <span className="font-bold text-base text-slate-900">Anmol Kumar</span>
+          <span className="text-slate-400">•</span>
+          <span className="text-xs text-orange-600 font-mono font-semibold">Data Analyst & BI Specialist</span>
         </div>
-        <p className="text-xs text-slate-400 max-w-md leading-relaxed">
+        <p className="text-xs text-slate-500 max-w-md leading-relaxed">
           Transforming messy multi-source datasets into executive business intelligence through SQL, Python, Power BI, and AI-assisted analytics.
         </p>
       </div>
 
-      <div className="flex flex-wrap items-center gap-6 text-xs text-slate-400 font-medium">
-        <a href="mailto:anmol.krhjp@gmail.com" className="hover:text-white transition-colors flex items-center gap-1.5">
-          <Mail className="w-3.5 h-3.5 text-orange-400" /> anmol.krhjp@gmail.com
+      <div className="flex flex-wrap items-center gap-6 text-xs text-slate-600 font-medium">
+        <a href="mailto:anmol.krhjp@gmail.com" className="hover:text-orange-600 transition-colors flex items-center gap-1.5">
+          <Mail className="w-3.5 h-3.5 text-orange-500" /> anmol.krhjp@gmail.com
         </a>
-        <a href="https://linkedin.com/in/anmol-kumar4" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">
-          <LinkedinIcon className="w-3.5 h-3.5 text-blue-400" /> LinkedIn
+        <a href="https://linkedin.com/in/anmol-kumar4" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 transition-colors flex items-center gap-1.5">
+          <LinkedinIcon className="w-3.5 h-3.5 text-blue-600" /> LinkedIn
         </a>
-        <a href="https://github.com/negeinno" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">
-          <GithubIcon className="w-3.5 h-3.5 text-slate-300" /> GitHub
+        <a href="https://github.com/negeinno" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors flex items-center gap-1.5">
+          <GithubIcon className="w-3.5 h-3.5 text-slate-700" /> GitHub
         </a>
-        <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">
-          <Download className="w-3.5 h-3.5 text-emerald-400" /> Resume PDF
+        <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+          <Download className="w-3.5 h-3.5 text-emerald-600" /> Resume PDF
         </a>
       </div>
     </div>
-    <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-500">
+    <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-slate-500">
       <p>© 2026 Anmol Kumar. Engineered with data discipline, clarity & human empathy.</p>
       <p className="flex items-center gap-2 font-mono">
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
         Based in Bengaluru, Karnataka • Open to Relocation
       </p>
     </div>
@@ -256,42 +256,42 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 
   return (
     <PageTransition>
-      <div className="w-full text-slate-100">
+      <div className="w-full text-slate-800">
         
         {/* Hero Section - Clean, Non-Overlapping Spacing */}
-        <section className="relative overflow-hidden pt-12 md:pt-16 pb-16 md:pb-24 px-6 md:px-12 border-b border-slate-800/80">
+        <section className="relative overflow-hidden pt-12 md:pt-16 pb-16 md:pb-24 px-6 md:px-12 border-b border-slate-200/90">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
             
             {/* Left Column: Headline, Pill & Bio */}
             <div className="lg:col-span-7 flex flex-col items-start">
               
               {/* Standalone Status Pill Badge with Clean Bottom Margin */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-orange-500/30 text-orange-400 text-xs font-mono font-medium shadow-sm mb-6">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-orange-700 text-xs font-mono font-medium shadow-2xs mb-6">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>Seeking Entry-Level Data Analyst & BI Roles</span>
-                <span className="text-slate-600">•</span>
-                <span className="text-slate-300">Bengaluru & Remote</span>
+                <span className="text-slate-300">•</span>
+                <span className="text-slate-600 font-medium">Bengaluru & Remote</span>
               </div>
 
               {/* Main Heading */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.04] text-white mb-6">
-                Transforming <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400">Raw Data</span> Into High-Impact Business Decisions.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-[1.04] text-slate-900 mb-6">
+                Transforming <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-yellow-600">Raw Data</span> Into High-Impact Business Decisions.
               </h1>
 
               {/* Lead Paragraph */}
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal mb-8">
-                Hello! I am <span className="text-white font-semibold">Anmol Kumar</span>, a Computer Science graduate specialized in 
-                <span className="text-orange-400 font-medium"> SQL</span>, 
-                <span className="text-orange-400 font-medium"> Python</span>, 
-                <span className="text-orange-400 font-medium"> Power BI</span>, and 
-                <span className="text-orange-400 font-medium"> AI-assisted Analytics</span>. I build robust data pipelines, design Star Schema models, and craft executive dashboards that cut through reporting noise.
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal mb-8">
+                Hello! I am <span className="text-slate-900 font-semibold">Anmol Kumar</span>, a Computer Science graduate specialized in 
+                <span className="text-orange-600 font-semibold"> SQL</span>, 
+                <span className="text-orange-600 font-semibold"> Python</span>, 
+                <span className="text-orange-600 font-semibold"> Power BI</span>, and 
+                <span className="text-orange-600 font-semibold"> AI-assisted Analytics</span>. I build robust data pipelines, design Star Schema models, and craft executive dashboards that cut through reporting noise.
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 mb-8">
                 <Link
                   to="/work"
-                  className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-orange-500/25 transition-all hover:gap-3"
+                  className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md shadow-orange-500/25 transition-all hover:gap-3"
                 >
                   Explore Case Studies <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -299,52 +299,52 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                   href={PERSONAL_INFO.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-white text-xs font-bold uppercase tracking-wider border border-slate-700/80 flex items-center gap-2 transition-all shadow-sm"
+                  className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold uppercase tracking-wider border border-slate-200/90 flex items-center gap-2 transition-all shadow-xs"
                 >
-                  <Download className="w-4 h-4 text-orange-400" /> Download Resume
+                  <Download className="w-4 h-4 text-orange-600" /> Download Resume PDF
                 </a>
                 <Link
                   to="/contact"
-                  className="px-4 py-3.5 text-slate-300 hover:text-white text-xs font-semibold uppercase tracking-wider flex items-center gap-1 transition-colors"
+                  className="px-4 py-3.5 text-slate-600 hover:text-slate-900 text-xs font-semibold uppercase tracking-wider flex items-center gap-1 transition-colors"
                 >
                   Contact Me <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
 
               {/* Quick Contact & Location Badges */}
-              <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-slate-400 border-t border-slate-800/80 font-mono w-full">
+              <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-slate-500 border-t border-slate-200/90 font-mono w-full">
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-orange-400" /> Bengaluru, Karnataka
+                  <MapPin className="w-3.5 h-3.5 text-orange-600" /> Bengaluru, Karnataka
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <GraduationCap className="w-3.5 h-3.5 text-amber-400" /> Chandigarh University (CGPA 7.66)
+                  <GraduationCap className="w-3.5 h-3.5 text-amber-600" /> Chandigarh University (CGPA 7.66)
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Cisco & IBM Certified
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Cisco & IBM Certified
                 </span>
               </div>
             </div>
 
             {/* Right Column: Clean Non-Overlapping Profile Window Card */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="w-full max-w-[390px] rounded-3xl bg-slate-900/90 border border-slate-700/80 shadow-2xl overflow-hidden glass-card">
+              <div className="w-full max-w-[390px] rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden glass-card">
                 
                 {/* Window Header */}
-                <div className="bg-slate-950/80 px-4 py-3 border-b border-slate-800/80 flex items-center justify-between">
+                <div className="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
-                    <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                    <span className="w-3 h-3 rounded-full bg-red-400"></span>
+                    <span className="w-3 h-3 rounded-full bg-amber-400"></span>
+                    <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-400">anmol_profile.pbix</span>
-                  <span className="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                  <span className="text-[11px] font-mono text-slate-600 font-medium">anmol_profile.pbix</span>
+                  <span className="text-[10px] font-mono bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200 font-semibold">
                     Live
                   </span>
                 </div>
 
                 {/* Profile Image - Clean, Fully Visible, High Fidelity */}
-                <div className="p-4 bg-gradient-to-b from-slate-900/50 to-slate-950/80">
-                  <div className="rounded-2xl overflow-hidden border border-slate-800 shadow-inner bg-slate-950">
+                <div className="p-4 bg-slate-50">
+                  <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xs bg-white">
                     <img
                       src="/about-pic.jpg"
                       alt="Anmol Kumar - Data Analyst"
@@ -354,13 +354,13 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 </div>
 
                 {/* Structured Info Dock (Below image, zero overlap!) */}
-                <div className="px-5 pb-5 pt-1 space-y-3">
+                <div className="px-5 pb-5 pt-1 space-y-3 bg-white">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-bold text-base text-white">Anmol Kumar</p>
-                      <p className="text-xs text-orange-400 font-mono font-medium">Data Analyst & BI Specialist</p>
+                      <p className="font-bold text-base text-slate-900">Anmol Kumar</p>
+                      <p className="text-xs text-orange-600 font-mono font-medium">Data Analyst & BI Specialist</p>
                     </div>
-                    <span className="text-[10px] bg-slate-800 text-slate-300 px-2.5 py-1 rounded-md border border-slate-700 font-mono">
+                    <span className="text-[10px] bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200 font-mono font-medium">
                       CSE '26
                     </span>
                   </div>
@@ -368,19 +368,19 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                   {/* Core Tech Stack Badges */}
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {['SQL (MySQL)', 'Power BI DAX', 'Python (Pandas)', 'Excel'].map((skill, sI) => (
-                      <span key={sI} className="text-[10px] font-mono bg-slate-800/90 text-slate-300 px-2 py-0.5 rounded border border-slate-700/60">
+                      <span key={sI} className="text-[10px] font-mono bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">
                         {skill}
                       </span>
                     ))}
                   </div>
 
                   {/* Status Indicator */}
-                  <div className="pt-2 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+                  <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-600">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                       Available for Immediate Joining
                     </span>
-                    <span className="text-orange-400 font-mono font-semibold">100% Focused</span>
+                    <span className="text-orange-600 font-mono font-bold">100% Focused</span>
                   </div>
                 </div>
 
@@ -391,20 +391,20 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         </section>
 
         {/* Live Core KPI Strip - Modern UI Card Grid */}
-        <section className="bg-[#090d16] py-12 px-6 md:px-12 border-b border-slate-800/80">
+        <section className="bg-slate-100/70 py-12 px-6 md:px-12 border-b border-slate-200/90">
           <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-5">
             {CORE_KPIS.map((kpi, idx) => (
               <div 
                 key={idx}
-                className="bg-slate-900/70 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/40 transition-all hover:-translate-y-1 shadow-lg shadow-black/20 glass-card"
+                className="bg-white p-6 rounded-2xl border border-slate-200 hover:border-orange-400/50 transition-all hover:-translate-y-1 shadow-sm glass-card"
               >
-                <p className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-amber-300">
+                <p className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-800 to-orange-600">
                   {kpi.value}
                 </p>
-                <p className="text-xs font-bold uppercase tracking-wider text-orange-400 mt-1 font-mono">
+                <p className="text-xs font-bold uppercase tracking-wider text-orange-600 mt-1 font-mono">
                   {kpi.label}
                 </p>
-                <p className="text-xs text-slate-400 mt-1">
+                <p className="text-xs text-slate-500 mt-1">
                   {kpi.subtext}
                 </p>
               </div>
@@ -413,29 +413,29 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         </section>
 
         {/* Featured Live Visualizer: AI Sales Insights Dashboard */}
-        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-800/80">
+        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-200/90">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
               <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-600 block mb-2">
                   Featured Case Study Showcase
                 </span>
-                <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+                <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-slate-900">
                   AI Sales Executive Intelligence Dashboard
                 </h2>
-                <p className="text-sm sm:text-base text-slate-400 max-w-2xl mt-2">
+                <p className="text-sm sm:text-base text-slate-600 max-w-2xl mt-2">
                   Engineered using SQL, Python, Excel, and Power BI. Toggle between the live interactive data model simulator and the production dashboard interface.
                 </p>
               </div>
 
               {/* View Switcher Pills */}
-              <div className="flex items-center gap-2 bg-slate-900 p-1 rounded-xl border border-slate-700/80 self-start md:self-auto">
+              <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200 self-start md:self-auto">
                 <button
                   onClick={() => setSalesViewMode('interactive')}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     salesViewMode === 'interactive'
-                      ? 'bg-orange-500 text-white shadow-md'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'bg-orange-500 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   <Workflow className="w-3.5 h-3.5" /> Interactive Model
@@ -444,15 +444,15 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                   onClick={() => setSalesViewMode('screenshot')}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
                     salesViewMode === 'screenshot'
-                      ? 'bg-orange-500 text-white shadow-md'
-                      : 'text-slate-400 hover:text-white'
+                      ? 'bg-orange-500 text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   <Eye className="w-3.5 h-3.5" /> Full BI Dashboard UI
                 </button>
                 <button
                   onClick={() => onSelectCaseStudy(CASE_STUDIES[0])}
-                  className="px-3 py-1.5 rounded-lg text-xs font-semibold text-orange-400 hover:text-orange-300 ml-1 border-l border-slate-700/80 pl-2"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold text-orange-600 hover:text-orange-700 ml-1 border-l border-slate-300 pl-2"
                 >
                   Full Breakdown →
                 </button>
@@ -463,16 +463,16 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
             {salesViewMode === 'interactive' ? (
               <SalesDashboardVisualizer />
             ) : (
-              <div className="rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 shadow-2xl glass-card">
+              <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-xl glass-card">
                 {/* Browser Titlebar */}
-                <div className="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                <div className="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between text-xs text-slate-600">
                   <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
-                    <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-                    <span className="font-mono text-slate-300 ml-2">app.powerbi.com/groups/me/reports/sales-executive-intelligence</span>
+                    <span className="w-3 h-3 rounded-full bg-red-400"></span>
+                    <span className="w-3 h-3 rounded-full bg-amber-400"></span>
+                    <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
+                    <span className="font-mono text-slate-700 ml-2">app.powerbi.com/groups/me/reports/sales-executive-intelligence</span>
                   </div>
-                  <span className="text-[11px] font-mono text-emerald-400">Production Refresh: Active</span>
+                  <span className="text-[11px] font-mono text-emerald-700 font-semibold">Production Refresh: Active</span>
                 </div>
                 {/* Full Uncropped High-Res Image */}
                 <img 
@@ -486,16 +486,16 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         </section>
 
         {/* Featured Case Studies Grid with Visual Artwork */}
-        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-800/80">
+        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-200/90">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-600 block mb-2">
                 Proven Track Record
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
+              <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-slate-900 mb-4">
                 Selected Data Case Studies
               </h2>
-              <p className="text-sm sm:text-base text-slate-400">
+              <p className="text-sm sm:text-base text-slate-600">
                 Detailed breakdowns demonstrating business problem scoping, SQL data mart modeling, Python preprocessing, and executive storytelling with real deliverables.
               </p>
             </div>
@@ -505,23 +505,23 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 <div
                   key={study.id}
                   onClick={() => onSelectCaseStudy(study)}
-                  className="group bg-slate-900/70 rounded-3xl border border-slate-800 overflow-hidden hover:border-orange-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10 cursor-pointer flex flex-col justify-between glass-card"
+                  className="group bg-white rounded-3xl border border-slate-200 overflow-hidden hover:border-orange-400/50 transition-all duration-300 hover:shadow-xl cursor-pointer flex flex-col justify-between glass-card"
                 >
                   <div>
                     {/* Visual Preview Image - Full uncropped aspect ratio */}
                     {study.image && (
-                      <div className="relative w-full overflow-hidden border-b border-slate-800 bg-slate-950">
+                      <div className="relative w-full overflow-hidden border-b border-slate-200 bg-slate-50">
                         <img 
                           src={study.image} 
                           alt={study.title} 
                           className="w-full aspect-[16/9.5] object-cover object-top group-hover:scale-[1.02] transition-transform duration-500" 
                         />
                         <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-                          <span className="text-[11px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md text-orange-400 border border-slate-700/80">
+                          <span className="text-[11px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-orange-600 border border-slate-200 shadow-xs">
                             {study.category}
                           </span>
                         </div>
-                        <div className="absolute bottom-3 right-4 z-10 text-xs font-mono text-slate-300 bg-slate-950/80 backdrop-blur-sm px-2.5 py-0.5 rounded border border-slate-700/60">
+                        <div className="absolute bottom-3 right-4 z-10 text-xs font-mono text-slate-700 bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded border border-slate-200 shadow-xs">
                           {study.timeline}
                         </div>
                       </div>
@@ -529,17 +529,17 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 
                     <div className="p-7 space-y-5">
                       <div>
-                        <h3 className="text-2xl font-black uppercase tracking-tight text-white group-hover:text-orange-400 transition-colors">
+                        <h3 className="text-2xl font-black uppercase tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors">
                           {study.title}
                         </h3>
-                        <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                           {study.subtitle}
                         </p>
                       </div>
 
                       {/* Behind The Scenes Quote */}
                       {study.analystNotes && (
-                        <div className="bg-slate-950/60 border-l-2 border-orange-400 p-3 rounded-r-xl text-xs text-slate-300 italic line-clamp-2">
+                        <div className="bg-orange-50/70 border-l-2 border-orange-500 p-3 rounded-r-xl text-xs text-slate-700 italic line-clamp-2">
                           "{study.analystNotes}"
                         </div>
                       )}
@@ -547,10 +547,10 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                       {/* Quick Metric Highlights */}
                       <div className="grid grid-cols-2 gap-3">
                         {study.metrics.slice(0, 2).map((m, mIdx) => (
-                          <div key={mIdx} className="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
-                            <p className="text-[10px] text-slate-400 font-mono uppercase">{m.label}</p>
-                            <p className="text-xl font-black text-white mt-0.5">{m.value}</p>
-                            {m.change && <p className="text-[10px] text-emerald-400 font-bold">{m.change}</p>}
+                          <div key={mIdx} className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                            <p className="text-[10px] text-slate-500 font-mono uppercase">{m.label}</p>
+                            <p className="text-xl font-black text-slate-900 mt-0.5">{m.value}</p>
+                            {m.change && <p className="text-[10px] text-emerald-600 font-bold">{m.change}</p>}
                           </div>
                         ))}
                       </div>
@@ -558,7 +558,7 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                       {/* Tools Tags */}
                       <div className="flex flex-wrap gap-1.5">
                         {study.tools.map((tool, tIdx) => (
-                          <span key={tIdx} className="text-[10px] font-medium bg-slate-800/80 text-slate-300 px-2 py-0.5 rounded border border-slate-700/60 font-mono">
+                          <span key={tIdx} className="text-[10px] font-medium bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200 font-mono">
                             {tool}
                           </span>
                         ))}
@@ -567,7 +567,7 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                   </div>
 
                   {/* Card Bottom CTA Strip */}
-                  <div className="px-7 py-4 bg-slate-950/90 border-t border-slate-800 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-200 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                  <div className="px-7 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-700 group-hover:bg-orange-500 group-hover:text-white transition-colors">
                     <span>View In-Depth Breakdown</span>
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -578,39 +578,39 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
             <div className="mt-12 text-center">
               <Link
                 to="/work"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-white text-xs font-bold uppercase tracking-wider border border-slate-700/80 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold uppercase tracking-wider border border-slate-200 shadow-xs transition-all hover:border-orange-300"
               >
-                Browse All Case Studies & Code Explorer <ArrowRight className="w-4 h-4 text-orange-400" />
+                Browse All Case Studies & Code Explorer <ArrowRight className="w-4 h-4 text-orange-600" />
               </Link>
             </div>
           </div>
         </section>
 
         {/* 6-Step Data Analytics Methodology with UNCLIPPED Architecture Visual */}
-        <section className="py-16 md:py-24 px-6 md:px-12 bg-[#080c14] border-b border-slate-800/80">
+        <section className="py-16 md:py-24 px-6 md:px-12 bg-slate-100/60 border-b border-slate-200/90">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-600 block mb-2">
                 Analytical Framework & Pipeline
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
+              <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-slate-900 mb-4">
                 End-To-End Data Architecture Flow
               </h2>
-              <p className="text-sm sm:text-base text-slate-400">
+              <p className="text-sm sm:text-base text-slate-600">
                 A structured, disciplined methodology ensuring every analysis produces dependable, verifiable, and actionable business intelligence.
               </p>
             </div>
 
             {/* Architecture Visual Diagram - 100% Fully Visible, No Cropping */}
-            <div className="mb-14 rounded-3xl overflow-hidden border border-slate-700/80 bg-slate-950 shadow-2xl glass-card">
-              <div className="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+            <div className="mb-14 rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-xl glass-card">
+              <div className="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between text-xs text-slate-600">
                 <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
-                  <span className="w-3 h-3 rounded-full bg-amber-500/80"></span>
-                  <span className="w-3 h-3 rounded-full bg-emerald-500/80"></span>
-                  <span className="font-mono text-slate-300 ml-2">architecture_pipeline_diagram.svg</span>
+                  <span className="w-3 h-3 rounded-full bg-red-400"></span>
+                  <span className="w-3 h-3 rounded-full bg-amber-400"></span>
+                  <span className="w-3 h-3 rounded-full bg-emerald-400"></span>
+                  <span className="font-mono text-slate-700 ml-2">architecture_pipeline_diagram.svg</span>
                 </div>
-                <span className="text-[11px] font-mono text-orange-400">Production Specification</span>
+                <span className="text-[11px] font-mono text-orange-600 font-semibold">Production Specification</span>
               </div>
               
               {/* Full Unclipped Image */}
@@ -621,22 +621,22 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               />
 
               {/* Caption Bar Explaining All 4 Stages */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-slate-900/60 border-t border-slate-800 text-xs">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-slate-50 border-t border-slate-200 text-xs">
                 <div>
-                  <p className="font-bold text-orange-400 font-mono">Stage 1: Sources</p>
-                  <p className="text-slate-400 text-[11px] mt-0.5">MySQL, SQL Server & CSV file dumps</p>
+                  <p className="font-bold text-orange-600 font-mono">Stage 1: Sources</p>
+                  <p className="text-slate-500 text-[11px] mt-0.5">MySQL, SQL Server & CSV file dumps</p>
                 </div>
                 <div>
-                  <p className="font-bold text-amber-400 font-mono">Stage 2: Ingestion</p>
-                  <p className="text-slate-400 text-[11px] mt-0.5">Python Pandas cleaning & ETL sanitation</p>
+                  <p className="font-bold text-amber-600 font-mono">Stage 2: Ingestion</p>
+                  <p className="text-slate-500 text-[11px] mt-0.5">Python Pandas cleaning & ETL sanitation</p>
                 </div>
                 <div>
-                  <p className="font-bold text-blue-400 font-mono">Stage 3: Warehousing</p>
-                  <p className="text-slate-400 text-[11px] mt-0.5">Analytical Star Schema & Fact modeling</p>
+                  <p className="font-bold text-blue-600 font-mono">Stage 3: Warehousing</p>
+                  <p className="text-slate-500 text-[11px] mt-0.5">Analytical Star Schema & Fact modeling</p>
                 </div>
                 <div>
-                  <p className="font-bold text-emerald-400 font-mono">Stage 4: BI & AI</p>
-                  <p className="text-slate-400 text-[11px] mt-0.5">Power BI DAX & AI insight briefs</p>
+                  <p className="font-bold text-emerald-600 font-mono">Stage 4: BI & AI</p>
+                  <p className="text-slate-500 text-[11px] mt-0.5">Power BI DAX & AI insight briefs</p>
                 </div>
               </div>
             </div>
@@ -646,19 +646,19 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               {DATA_METHODOLOGY_STEPS.map((step, idx) => (
                 <div
                   key={idx}
-                  className="bg-slate-900/70 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/40 transition-colors relative flex flex-col justify-between glass-card"
+                  className="bg-white p-6 rounded-2xl border border-slate-200 hover:border-orange-400/50 transition-colors relative flex flex-col justify-between glass-card shadow-xs"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl font-black font-mono text-orange-400/90">
+                      <span className="text-2xl font-black font-mono text-orange-600">
                         {step.step}
                       </span>
-                      <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300">
-                        <Layers className="w-4 h-4 text-orange-400" />
+                      <div className="w-8 h-8 rounded-lg bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600">
+                        <Layers className="w-4 h-4" />
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{step.name}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">{step.desc}</p>
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{step.name}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -667,29 +667,29 @@ const Home = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         </section>
 
         {/* Personal Human Philosophy Section */}
-        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-800/80">
-          <div className="max-w-5xl mx-auto bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-900 p-8 sm:p-12 rounded-3xl border border-slate-700/80 relative overflow-hidden shadow-2xl glass-card">
+        <section className="py-16 md:py-24 px-6 md:px-12 border-b border-slate-200/90">
+          <div className="max-w-5xl mx-auto bg-gradient-to-r from-orange-50/80 via-amber-50/70 to-orange-50/80 p-8 sm:p-12 rounded-3xl border border-orange-200/90 relative overflow-hidden shadow-lg glass-card">
             <div className="relative z-10 space-y-6">
-              <div className="flex items-center gap-2 text-orange-400">
+              <div className="flex items-center gap-2 text-orange-600">
                 <Sparkles className="w-5 h-5" />
                 <span className="text-xs font-mono font-bold uppercase tracking-widest">Philosophy & Human Perspective</span>
               </div>
-              <blockquote className="text-xl sm:text-3xl font-black text-white leading-snug">
+              <blockquote className="text-xl sm:text-3xl font-black text-slate-900 leading-snug">
                 "{PERSONAL_INFO.philosophy}"
               </blockquote>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 As a Computer Science graduate with hands-on technical foundations in SQL, relational databases, and Python, I do not just treat data as numbers. I treat each metric as representing real customer behaviors, real employee careers, and real revenue opportunities. That human bridge is what makes analytics powerful.
               </p>
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   to="/about"
-                  className="px-5 py-2.5 rounded-xl bg-white text-slate-900 hover:bg-slate-200 text-xs font-bold uppercase tracking-wider transition-colors"
+                  className="px-5 py-2.5 rounded-xl bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"
                 >
                   Read My Full Story & Leadership Role
                 </Link>
                 <Link
                   to="/contact"
-                  className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold uppercase tracking-wider border border-slate-700 transition-colors"
+                  className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold uppercase tracking-wider border border-slate-300 transition-colors shadow-xs"
                 >
                   Schedule an Interview
                 </Link>
@@ -713,23 +713,23 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-100 w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-800 w-full">
         {/* Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-600 block mb-2">
             Portfolio Work & Case Studies
           </span>
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-4">
+          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-slate-900 mb-4">
             Data Case Studies & Deep-Dives
           </h1>
-          <p className="text-base text-slate-300 leading-relaxed">
+          <p className="text-base text-slate-600 leading-relaxed">
             Each case study outlines the full lifecycle: business context, raw data hygiene, SQL star-schema modeling, Python exploratory data analysis, and Power BI executive scorecards with verified deliverables.
           </p>
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-slate-800">
-          <span className="text-xs text-slate-400 flex items-center gap-1 mr-2">
+        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-slate-200">
+          <span className="text-xs text-slate-500 flex items-center gap-1 mr-2">
             <Filter className="w-3.5 h-3.5" /> Filter By:
           </span>
           {(['All', 'Business Intelligence', 'Python & EDA', 'SQL & Data Modeling'] as const).map((cat) => (
@@ -738,8 +738,8 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               onClick={() => setActiveFilter(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeFilter === cat
-                  ? 'bg-orange-500 text-white shadow-md'
-                  : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-slate-800'
+                  ? 'bg-orange-500 text-white shadow-xs'
+                  : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
               }`}
             >
               {cat}
@@ -752,19 +752,19 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
           {filteredStudies.map((study) => (
             <div
               key={study.id}
-              className="bg-slate-900/70 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl hover:border-orange-500/40 transition-all duration-300 glass-card"
+              className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-lg hover:border-orange-400/50 transition-all duration-300 glass-card"
             >
               {/* Full Unclipped Image Banner */}
               {study.image && (
-                <div className="w-full overflow-hidden border-b border-slate-800 bg-slate-950">
-                  <div className="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                    <span className="font-mono text-slate-300 flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-orange-400"></span>
+                <div className="w-full overflow-hidden border-b border-slate-200 bg-slate-50">
+                  <div className="bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center justify-between text-xs text-slate-600">
+                    <span className="font-mono text-slate-700 flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
                       Production Dashboard Artifact
                     </span>
                     <button
                       onClick={() => onSelectCaseStudy(study)}
-                      className="px-3 py-1 rounded bg-orange-500 hover:bg-orange-600 text-white text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-sm"
+                      className="px-3 py-1 rounded bg-orange-500 hover:bg-orange-600 text-white text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 shadow-xs"
                     >
                       <Maximize2 className="w-3 h-3" /> Expand Full View
                     </button>
@@ -780,26 +780,26 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
               <div className="p-6 sm:p-10">
                 {/* Meta Header */}
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
-                  <span className="text-xs text-orange-400 font-mono font-bold uppercase tracking-wider">
+                  <span className="text-xs text-orange-600 font-mono font-bold uppercase tracking-wider">
                     {study.category} • {study.timeline}
                   </span>
-                  <span className="text-xs text-slate-400 font-medium">
+                  <span className="text-xs text-slate-500 font-medium">
                     Role: {study.role}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white mb-2">
+                <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-slate-900 mb-2">
                   {study.title}
                 </h2>
-                <p className="text-sm sm:text-base text-slate-300 mb-6 font-medium">
+                <p className="text-sm sm:text-base text-slate-600 mb-6 font-medium">
                   {study.subtitle}
                 </p>
 
                 {/* Behind the scenes personal note */}
                 {study.analystNotes && (
-                  <div className="bg-slate-950/70 border-l-3 border-orange-500 p-4 rounded-r-xl mb-6 text-xs sm:text-sm text-slate-300 italic">
-                    <span className="text-orange-400 font-bold block not-italic uppercase font-mono text-[11px] mb-1">
+                  <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-xl mb-6 text-xs sm:text-sm text-slate-700 italic border border-orange-200/50">
+                    <span className="text-orange-600 font-bold block not-italic uppercase font-mono text-[11px] mb-1">
                       Analyst Reflection:
                     </span>
                     "{study.analystNotes}"
@@ -807,28 +807,28 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 )}
 
                 {/* Metrics Banner */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-slate-950 p-4 rounded-2xl border border-slate-800 mb-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-6">
                   {study.metrics.map((m, mIdx) => (
                     <div key={mIdx} className="p-2.5">
-                      <p className="text-[10px] text-slate-400 font-mono uppercase">{m.label}</p>
-                      <p className="text-xl sm:text-2xl font-black text-white mt-0.5">{m.value}</p>
+                      <p className="text-[10px] text-slate-500 font-mono uppercase">{m.label}</p>
+                      <p className="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">{m.value}</p>
                       {m.change && (
-                        <p className="text-[11px] font-bold text-emerald-400 mt-0.5">{m.change}</p>
+                        <p className="text-[11px] font-bold text-emerald-600 mt-0.5">{m.change}</p>
                       )}
                     </div>
                   ))}
                 </div>
 
                 {/* Problem vs Solution Summary */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-300 mb-6">
-                  <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
-                    <span className="font-bold text-red-400 uppercase tracking-wider block mb-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-600 mb-6">
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <span className="font-bold text-red-600 uppercase tracking-wider block mb-1">
                       Problem Context:
                     </span>
                     <p className="leading-relaxed">{study.problem}</p>
                   </div>
-                  <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
-                    <span className="font-bold text-emerald-400 uppercase tracking-wider block mb-1">
+                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <span className="font-bold text-emerald-600 uppercase tracking-wider block mb-1">
                       Analytical Solution:
                     </span>
                     <p className="leading-relaxed">{study.solution}</p>
@@ -836,10 +836,10 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
                 </div>
 
                 {/* Tools & CTA */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800">
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-200">
                   <div className="flex flex-wrap gap-1.5">
                     {study.tools.map((t, i) => (
-                      <span key={i} className="text-[11px] font-medium bg-slate-800/80 text-slate-300 px-2.5 py-1 rounded-md border border-slate-700/80 font-mono">
+                      <span key={i} className="text-[11px] font-medium bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md border border-slate-200 font-mono">
                         {t}
                       </span>
                     ))}
@@ -847,7 +847,7 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 
                   <button
                     onClick={() => onSelectCaseStudy(study)}
-                    className="px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-orange-500/20 transition-all"
+                    className="px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-xs transition-all"
                   >
                     Launch Full Interactive Case Study <ArrowRight className="w-4 h-4" />
                   </button>
@@ -860,10 +860,10 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         {/* Second Visualizer: HR Workforce Analytics in Depth */}
         <div className="mb-20">
           <div className="mb-6">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-teal-400 block mb-1">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-teal-600 block mb-1">
               Interactive People Analytics Preview
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-slate-900">
               HR Workforce Retention Visualizer
             </h2>
           </div>
@@ -873,13 +873,13 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
         {/* Interactive Query & Code Sandbox */}
         <div>
           <div className="mb-6">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-1">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-600 block mb-1">
               Code & Query Repository
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-slate-900">
               Production Scripts, CTEs & DAX Formulas
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Inspect real queries and scripts written for data sanitization, RFM scoring, and variance reporting.
             </p>
           </div>
@@ -895,16 +895,16 @@ const Work = ({ onSelectCaseStudy }: { onSelectCaseStudy: (study: CaseStudy) => 
 const Skills = () => {
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-100 w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-800 w-full">
         {/* Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-600 block mb-2">
             Technical Proficiency Matrix
           </span>
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-4">
+          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-slate-900 mb-4">
             Data Tools, Languages & Methodologies
           </h1>
-          <p className="text-base text-slate-300 leading-relaxed">
+          <p className="text-base text-slate-600 leading-relaxed">
             From low-level SQL queries and Python data frames to executive Power BI dashboards and prompt-engineered summaries, here is a comprehensive breakdown of my capabilities.
           </p>
         </div>
@@ -914,19 +914,19 @@ const Skills = () => {
           {TECHNICAL_SKILLS.map((cat, idx) => (
             <div 
               key={idx}
-              className="bg-slate-900/70 p-6 rounded-2xl border border-slate-800 hover:border-orange-500/30 transition-all flex flex-col justify-between glass-card"
+              className="bg-white p-6 rounded-2xl border border-slate-200 hover:border-orange-400/50 transition-all flex flex-col justify-between glass-card shadow-xs"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-bold text-base uppercase tracking-tight text-white">
+                  <h3 className="font-bold text-base uppercase tracking-tight text-slate-900">
                     {cat.category}
                   </h3>
-                  <span className="w-8 h-8 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center">
+                  <span className="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center border border-orange-200">
                     <Database className="w-4 h-4" />
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-400 mb-6 leading-relaxed">
+                <p className="text-xs text-slate-600 mb-6 leading-relaxed">
                   {cat.description}
                 </p>
 
@@ -935,14 +935,14 @@ const Skills = () => {
                   {cat.skills.map((skill, sIdx) => (
                     <div key={sIdx}>
                       <div className="flex justify-between items-center text-xs mb-1">
-                        <span className="font-medium text-slate-200">{skill.name}</span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-orange-400 border border-slate-700">
+                        <span className="font-medium text-slate-800">{skill.name}</span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-orange-600 border border-slate-200">
                           {skill.tag}
                         </span>
                       </div>
-                      <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                      <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                         <div 
-                          className="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full" 
+                          className="h-full bg-gradient-to-r from-orange-500 to-amber-500 rounded-full" 
                           style={{ width: `${skill.level}%` }}
                         />
                       </div>
@@ -955,9 +955,9 @@ const Skills = () => {
         </div>
 
         {/* Tool Stack Badges */}
-        <div className="bg-slate-900/70 p-8 sm:p-10 rounded-3xl border border-slate-800 mb-16 glass-card">
-          <h3 className="text-xl font-bold uppercase tracking-wider text-white mb-6 flex items-center gap-2">
-            <Cpu className="w-5 h-5 text-orange-400" />
+        <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 mb-16 glass-card shadow-sm">
+          <h3 className="text-xl font-bold uppercase tracking-wider text-slate-900 mb-6 flex items-center gap-2">
+            <Cpu className="w-5 h-5 text-orange-600" />
             Software & Environment Ecosystem
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
@@ -975,25 +975,25 @@ const Skills = () => {
               { name: 'DAX', category: 'Data Analysis Expr' },
               { name: 'Prompt Eng.', category: 'AI Summaries' },
             ].map((tool, i) => (
-              <div key={i} className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-center">
-                <p className="font-bold text-xs text-white">{tool.name}</p>
-                <p className="text-[10px] text-slate-400 font-mono mt-0.5">{tool.category}</p>
+              <div key={i} className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-center">
+                <p className="font-bold text-xs text-slate-900">{tool.name}</p>
+                <p className="text-[10px] text-slate-500 font-mono mt-0.5">{tool.category}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Call to action */}
-        <div className="text-center bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 p-8 rounded-3xl border border-slate-800">
-          <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-2">
+        <div className="text-center bg-gradient-to-r from-orange-50/80 via-amber-50/70 to-orange-50/80 p-8 rounded-3xl border border-orange-200 shadow-sm">
+          <h3 className="text-2xl font-black uppercase tracking-tight text-slate-900 mb-2">
             Have a Data Challenge or Open Role?
           </h3>
-          <p className="text-sm text-slate-300 max-w-lg mx-auto mb-6">
+          <p className="text-sm text-slate-600 max-w-lg mx-auto mb-6">
             I am eager to contribute clean code, structured SQL queries, and sharp analytical insights to your team.
           </p>
           <Link
             to="/contact"
-            className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 transition-all shadow-md"
+            className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 transition-all shadow-sm"
           >
             Connect with Anmol <ArrowRight className="w-4 h-4" />
           </Link>
@@ -1008,16 +1008,16 @@ const Skills = () => {
 const About = () => {
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-100 w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-800 w-full">
         {/* Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-600 block mb-2">
             The Analyst & Coordinator
           </span>
-          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-4">
+          <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-slate-900 mb-4">
             Anmol Kumar
           </h1>
-          <p className="text-base text-slate-300 leading-relaxed">
+          <p className="text-base text-slate-600 leading-relaxed">
             Computer Science Graduate • Data Analyst • Academic Class Representative
           </p>
         </div>
@@ -1027,16 +1027,18 @@ const About = () => {
           
           {/* Colorful Vibrant Photo Card */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full max-w-[400px] rounded-3xl bg-slate-900/90 border border-slate-700/80 shadow-2xl overflow-hidden glass-card">
+            <div className="w-full max-w-[400px] rounded-3xl bg-white border border-slate-200 shadow-xl overflow-hidden glass-card">
               
-              <div className="bg-slate-950/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                <span className="font-mono text-slate-300 font-bold">anmol_kumar.jpg</span>
-                <span className="text-[10px] font-mono text-emerald-400">Chandigarh University CSE</span>
+              <div className="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center justify-between text-xs text-slate-600">
+                <span className="font-mono text-slate-800 font-bold">anmol_kumar.jpg</span>
+                <span className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  Chandigarh University CSE
+                </span>
               </div>
 
               {/* Natural Full-Color Photography */}
-              <div className="p-4 bg-gradient-to-b from-slate-900 to-slate-950">
-                <div className="rounded-2xl overflow-hidden border border-slate-800 shadow-md">
+              <div className="p-4 bg-slate-50">
+                <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xs bg-white">
                   <img
                     src="/about-pic.jpg"
                     alt="Anmol Kumar - Full Color Portrait"
@@ -1046,12 +1048,12 @@ const About = () => {
               </div>
 
               {/* Card Bottom Meta */}
-              <div className="p-5 bg-slate-950/90 border-t border-slate-800 space-y-2">
+              <div className="p-5 bg-white border-t border-slate-200 space-y-2">
                 <div className="flex items-center justify-between">
-                  <p className="font-bold text-white text-base">Anmol Kumar</p>
-                  <span className="text-xs text-emerald-400 font-mono font-bold">CGPA: 7.66 / 10</span>
+                  <p className="font-bold text-slate-900 text-base">Anmol Kumar</p>
+                  <span className="text-xs text-emerald-700 font-mono font-bold">CGPA: 7.66 / 10</span>
                 </div>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500">
                   Academic Class Representative (2024–2025) • 70+ Students
                 </p>
               </div>
@@ -1060,67 +1062,67 @@ const About = () => {
           </div>
 
           {/* Biography Text & Human Context */}
-          <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-snug">
+          <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-slate-900 leading-snug">
               Passionate about turning raw data into meaningful business intelligence.
             </h2>
             <p>
               {PERSONAL_INFO.bio}
             </p>
             <p>
-              Throughout my degree at Chandigarh University (<span className="text-white font-semibold">CGPA 7.66 / 10</span>), I cultivated strong foundations in relational database management, data structures, and statistical reasoning. I quickly realized that the greatest superpower in modern organizations is the ability to turn disparate, unstandardized transactional logs into clear, actionable stories that non-technical leaders can act on immediately.
+              Throughout my degree at Chandigarh University (<span className="text-slate-900 font-semibold">CGPA 7.66 / 10</span>), I cultivated strong foundations in relational database management, data structures, and statistical reasoning. I quickly realized that the greatest superpower in modern organizations is the ability to turn disparate, unstandardized transactional logs into clear, actionable stories that non-technical leaders can act on immediately.
             </p>
             <p>
               In addition to traditional analytics, I have actively mastered AI-assisted data analysis and prompt engineering to accelerate report compilation, automate data anomalies summarization, and craft executive briefings in minutes rather than days.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-800 font-mono text-xs">
+            <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-200 font-mono text-xs">
               <div>
-                <span className="text-[10px] uppercase text-slate-500 font-bold block mb-1">Education</span>
-                <span className="font-bold text-white block">B.E. Computer Science</span>
-                <span className="text-slate-400">Chandigarh University (CGPA 7.66)</span>
+                <span className="text-[10px] uppercase text-slate-400 font-bold block mb-1">Education</span>
+                <span className="font-bold text-slate-900 block">B.E. Computer Science</span>
+                <span className="text-slate-500">Chandigarh University (CGPA 7.66)</span>
               </div>
               <div>
-                <span className="text-[10px] uppercase text-slate-500 font-bold block mb-1">Location</span>
-                <span className="font-bold text-white block">Bengaluru, Karnataka</span>
-                <span className="text-slate-400">Available across India & Remote</span>
+                <span className="text-[10px] uppercase text-slate-400 font-bold block mb-1">Location</span>
+                <span className="font-bold text-slate-900 block">Bengaluru, Karnataka</span>
+                <span className="text-slate-500">Available across India & Remote</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Leadership Spotlight: Academic Class Representative */}
-        <div className="bg-slate-900/70 rounded-3xl border border-slate-800 p-8 sm:p-12 mb-20 glass-card">
-          <div className="flex items-center gap-3 text-orange-400 mb-4">
+        <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 mb-20 glass-card shadow-lg">
+          <div className="flex items-center gap-3 text-orange-600 mb-4">
             <Users className="w-6 h-6" />
             <span className="text-xs font-mono font-bold uppercase tracking-widest">
               Leadership Experience • 2024 – 2025
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-white mb-4">
+          <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tight text-slate-900 mb-4">
             Academic Class Representative (70+ Students)
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-8 max-w-3xl">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed mb-8 max-w-3xl">
             Elected as the official liaison representing a class of 70+ engineering students to university faculty, department chairs, and administrative leadership. Used structured tracking spreadsheets to streamline communications and eliminate operational friction.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800">
-              <span className="text-orange-400 font-bold text-sm block mb-2">Bridge of Communication</span>
-              <p className="text-xs text-slate-300 leading-relaxed">
+            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+              <span className="text-orange-600 font-bold text-sm block mb-2">Bridge of Communication</span>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Served as the primary channel between faculty members and 70+ students, relaying critical curriculum guidelines, project rubrics, and administrative policies with zero ambiguity.
               </p>
             </div>
-            <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800">
-              <span className="text-orange-400 font-bold text-sm block mb-2">Schedule & Exam Logistics</span>
-              <p className="text-xs text-slate-300 leading-relaxed">
+            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+              <span className="text-orange-600 font-bold text-sm block mb-2">Schedule & Exam Logistics</span>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Coordinated academic schedules, lab batch rotations, and examination preparation schedules, avoiding timetable clashes across 4 consecutive academic semesters.
               </p>
             </div>
-            <div className="bg-slate-950 p-5 rounded-2xl border border-slate-800">
-              <span className="text-orange-400 font-bold text-sm block mb-2">Issue Resolution & Mediation</span>
-              <p className="text-xs text-slate-300 leading-relaxed">
+            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200">
+              <span className="text-orange-600 font-bold text-sm block mb-2">Issue Resolution & Mediation</span>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Resolved 180+ student academic concerns by collaborating directly with professors and administrative heads with a 24-hour turnaround SLA.
               </p>
             </div>
@@ -1130,25 +1132,25 @@ const About = () => {
         {/* Education & Certifications Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
           {/* Education Card */}
-          <div className="bg-slate-900/70 p-8 rounded-3xl border border-slate-800 glass-card">
-            <div className="flex items-center gap-2 text-orange-400 mb-4">
+          <div className="bg-white p-8 rounded-3xl border border-slate-200 glass-card shadow-sm">
+            <div className="flex items-center gap-2 text-orange-600 mb-4">
               <GraduationCap className="w-5 h-5" />
               <span className="text-xs font-mono font-bold uppercase tracking-widest">Formal Education</span>
             </div>
-            <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-1">
+            <h3 className="text-2xl font-black uppercase tracking-tight text-slate-900 mb-1">
               {EDUCATION.degree}
             </h3>
-            <p className="text-sm text-slate-300 font-medium">{EDUCATION.institution}</p>
-            <div className="flex items-center gap-4 text-xs font-mono text-slate-400 my-4">
+            <p className="text-sm text-slate-600 font-medium">{EDUCATION.institution}</p>
+            <div className="flex items-center gap-4 text-xs font-mono text-slate-500 my-4">
               <span>{EDUCATION.period}</span>
               <span>•</span>
-              <span className="text-emerald-400 font-bold">CGPA: {EDUCATION.cgpa}</span>
+              <span className="text-emerald-700 font-bold">CGPA: {EDUCATION.cgpa}</span>
             </div>
-            <div className="pt-4 border-t border-slate-800">
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Relevant Coursework:</p>
+            <div className="pt-4 border-t border-slate-200">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Relevant Coursework:</p>
               <div className="flex flex-wrap gap-2">
                 {EDUCATION.coursework.map((c, i) => (
-                  <span key={i} className="text-[11px] bg-slate-950 text-slate-300 px-3 py-1 rounded-md border border-slate-800 font-mono">
+                  <span key={i} className="text-[11px] bg-slate-100 text-slate-700 px-3 py-1 rounded-md border border-slate-200 font-mono">
                     {c}
                   </span>
                 ))}
@@ -1157,29 +1159,29 @@ const About = () => {
           </div>
 
           {/* Certifications Card */}
-          <div className="bg-slate-900/70 p-8 rounded-3xl border border-slate-800 glass-card">
-            <div className="flex items-center gap-2 text-orange-400 mb-4">
+          <div className="bg-white p-8 rounded-3xl border border-slate-200 glass-card shadow-sm">
+            <div className="flex items-center gap-2 text-orange-600 mb-4">
               <Award className="w-5 h-5" />
               <span className="text-xs font-mono font-bold uppercase tracking-widest">Verified Credentials</span>
             </div>
-            <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-4">
+            <h3 className="text-2xl font-black uppercase tracking-tight text-slate-900 mb-4">
               Professional Certifications
             </h3>
             <div className="space-y-4">
               {CERTIFICATIONS.map((cert, i) => (
-                <div key={i} className="bg-slate-950 p-4 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all">
+                <div key={i} className="bg-slate-50 p-4 rounded-2xl border border-slate-200 hover:border-slate-300 transition-all">
                   <div className="flex justify-between items-start gap-2">
                     <div>
-                      <h4 className="font-bold text-sm text-white">{cert.title}</h4>
-                      <p className="text-xs text-slate-400 mt-0.5">{cert.issuer} • {cert.date}</p>
+                      <h4 className="font-bold text-sm text-slate-900">{cert.title}</h4>
+                      <p className="text-xs text-slate-500 mt-0.5">{cert.issuer} • {cert.date}</p>
                     </div>
-                    <span className="text-[10px] font-mono text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-mono text-emerald-700 border border-emerald-300 bg-emerald-50 px-2 py-0.5 rounded font-semibold">
                       Verified
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-1.5 mt-3">
                     {cert.skills.map((s, sI) => (
-                      <span key={sI} className="text-[10px] text-slate-300 bg-slate-900 px-2 py-0.5 rounded border border-slate-800 font-mono">
+                      <span key={sI} className="text-[10px] text-slate-700 bg-white px-2 py-0.5 rounded border border-slate-200 font-mono">
                         {s}
                       </span>
                     ))}
@@ -1230,29 +1232,29 @@ const Contact = () => {
 
   return (
     <PageTransition>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-100 w-full">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 text-slate-800 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column: Direct Info */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-400 block mb-2">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-orange-600 block mb-2">
                 Get In Touch
               </span>
-              <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white mb-4">
+              <h1 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-slate-900 mb-4">
                 Let's Discuss Opportunities.
               </h1>
-              <p className="text-base text-slate-300 leading-relaxed">
+              <p className="text-base text-slate-600 leading-relaxed">
                 I am actively interviewing for entry-level Data Analyst, Business Intelligence Analyst, and Junior Analytics roles. Feel free to send a message, connect on LinkedIn, or schedule an exploratory chat.
               </p>
             </div>
 
             {/* Availability Banner */}
-            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping" />
+            <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-emerald-500 animate-ping" />
               <div>
-                <p className="text-xs font-bold text-emerald-300">Ready for Immediate Onboarding</p>
-                <p className="text-[11px] text-slate-400">Open to Bengaluru, onsite roles, and remote opportunities.</p>
+                <p className="text-xs font-bold text-emerald-800">Ready for Immediate Onboarding</p>
+                <p className="text-[11px] text-slate-600">Open to Bengaluru, onsite roles, and remote opportunities.</p>
               </div>
             </div>
 
@@ -1260,116 +1262,116 @@ const Contact = () => {
             <div className="space-y-3.5 pt-2">
               <a 
                 href="mailto:anmol.krhjp@gmail.com"
-                className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-orange-500/50 transition-all group glass-card"
+                className="flex items-center justify-between p-4 rounded-2xl bg-white border border-slate-200 hover:border-orange-400 transition-all group glass-card shadow-xs"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center border border-orange-200">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-slate-400 uppercase font-mono">Email Address</p>
-                    <p className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
+                    <p className="text-[10px] text-slate-500 uppercase font-mono">Email Address</p>
+                    <p className="text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
                       anmol.krhjp@gmail.com
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 transition-colors" />
               </a>
 
               <a 
                 href="tel:+919508412334"
-                className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 transition-all group glass-card"
+                className="flex items-center justify-between p-4 rounded-2xl bg-white border border-slate-200 hover:border-emerald-400 transition-all group glass-card shadow-xs"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-slate-400 uppercase font-mono">Phone Number</p>
-                    <p className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+                    <p className="text-[10px] text-slate-500 uppercase font-mono">Phone Number</p>
+                    <p className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
                       +91 95084 12334
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 transition-colors" />
               </a>
 
               <a 
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 transition-all group glass-card"
+                className="flex items-center justify-between p-4 rounded-2xl bg-white border border-slate-200 hover:border-blue-400 transition-all group glass-card shadow-xs"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-200">
                     <LinkedinIcon className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-slate-400 uppercase font-mono">LinkedIn Profile</p>
-                    <p className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                    <p className="text-[10px] text-slate-500 uppercase font-mono">LinkedIn Profile</p>
+                    <p className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                       linkedin.com/in/anmol-kumar4
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 transition-colors" />
               </a>
 
               <a 
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 transition-all group glass-card"
+                className="flex items-center justify-between p-4 rounded-2xl bg-white border border-slate-200 hover:border-purple-400 transition-all group glass-card shadow-xs"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center border border-purple-200">
                     <GithubIcon className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-slate-400 uppercase font-mono">GitHub Repositories</p>
-                    <p className="text-sm font-bold text-white group-hover:text-purple-400 transition-colors">
+                    <p className="text-[10px] text-slate-500 uppercase font-mono">GitHub Repositories</p>
+                    <p className="text-sm font-bold text-slate-900 group-hover:text-purple-600 transition-colors">
                       github.com/negeinno
                     </p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
+                <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 transition-colors" />
               </a>
 
               <a 
                 href={PERSONAL_INFO.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-orange-500/15 to-amber-500/10 border border-orange-500/30 hover:border-orange-500/60 transition-all group glass-card"
+                className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 hover:border-orange-400 transition-all group glass-card shadow-xs"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center shadow-sm">
+                  <div className="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center shadow-xs">
                     <Download className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] text-orange-400 uppercase font-mono font-bold">Curriculum Vitae</p>
-                    <p className="text-sm font-bold text-white">Download Resume PDF</p>
+                    <p className="text-[10px] text-orange-600 uppercase font-mono font-bold">Curriculum Vitae</p>
+                    <p className="text-sm font-bold text-slate-900">Download Resume PDF</p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-orange-400" />
+                <ArrowRight className="w-4 h-4 text-orange-600" />
               </a>
             </div>
           </div>
 
           {/* Right Column: Interactive Form */}
-          <div className="lg:col-span-7 bg-slate-900/70 p-8 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl glass-card">
+          <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-xl glass-card">
             {status === 'submitted' ? (
               <div className="text-center py-16 space-y-6">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-3xl font-black uppercase tracking-tight text-white">
+                <h3 className="text-3xl font-black uppercase tracking-tight text-slate-900">
                   Message Transmitted!
                 </h3>
-                <p className="text-sm text-slate-300 max-w-sm mx-auto leading-relaxed">
+                <p className="text-sm text-slate-600 max-w-sm mx-auto leading-relaxed">
                   Thank you for reaching out. I receive form submissions directly in my inbox and will get back to you within 24 hours.
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold uppercase tracking-wider transition-colors"
+                  className="px-6 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold uppercase tracking-wider transition-colors border border-slate-200"
                 >
                   Send Another Message
                 </button>
@@ -1377,17 +1379,17 @@ const Contact = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-bold uppercase tracking-tight text-white mb-1">
+                  <h3 className="text-xl font-bold uppercase tracking-tight text-slate-900 mb-1">
                     Send a Message or Interview Invitation
                   </h3>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-slate-500">
                     Fill out the form below to connect directly with Anmol.
                   </p>
                 </div>
 
                 {/* Inquiry Type Chips */}
                 <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
                     Topic / Opportunity Type:
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -1403,8 +1405,8 @@ const Contact = () => {
                         onClick={() => setInquiryType(chip)}
                         className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-all ${
                           inquiryType === chip
-                            ? 'bg-orange-500 text-white shadow-md'
-                            : 'bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800'
+                            ? 'bg-orange-500 text-white shadow-xs font-semibold'
+                            : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
                         }`}
                       >
                         {chip}
@@ -1415,7 +1417,7 @@ const Contact = () => {
 
                 {/* Inputs */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
                     Your Name
                   </label>
                   <input
@@ -1424,12 +1426,12 @@ const Contact = () => {
                     required
                     placeholder="e.g. Sarah Jenkins (Hiring Manager)"
                     disabled={status === 'submitting'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-orange-500 transition-colors"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
                     Your Email
                   </label>
                   <input
@@ -1438,12 +1440,12 @@ const Contact = () => {
                     required
                     placeholder="sarah@company.com"
                     disabled={status === 'submitting'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-orange-500 transition-colors"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-600">
                     Message / Opportunity Scope
                   </label>
                   <textarea
@@ -1452,21 +1454,21 @@ const Contact = () => {
                     rows={4}
                     placeholder="Hi Anmol, we are looking for a Data Analyst with Power BI and SQL skills to join our analytics team..."
                     disabled={status === 'submitting'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500 transition-colors resize-none"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-orange-500 transition-colors resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold uppercase tracking-wider text-xs shadow-lg shadow-orange-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold uppercase tracking-wider text-xs shadow-md shadow-orange-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-60"
                 >
                   {status === 'submitting' ? 'Dispatching...' : 'Submit Message'}
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
                 {status === 'error' && (
-                  <p className="text-xs text-red-400 text-center font-mono">
+                  <p className="text-xs text-red-600 text-center font-mono">
                     Failed to send message. Please email anmol.krhjp@gmail.com directly!
                   </p>
                 )}
@@ -1495,7 +1497,7 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#070b14] text-slate-100 font-sans selection:bg-orange-500 selection:text-white flex flex-col relative overflow-hidden">
+      <div className="min-h-screen bg-[#f8fafc] text-slate-800 font-sans selection:bg-orange-500 selection:text-white flex flex-col relative overflow-hidden">
         <FishOceanBackground />
         <GridBackground />
         <NavBar />
